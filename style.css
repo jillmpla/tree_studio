@@ -529,6 +529,13 @@ button {
     animation: symbol-pulse 2.8s ease-in-out infinite;
 }
 
+/* Prevent Stars of David from rendering as emoji on mobile. */
+.Judaism-symbol,
+[data-theme="Judaism"] .floating-icon {
+    font-family: Georgia, "Times New Roman", serif;
+    font-variant-emoji: text;
+}
+
 .Judaism-bauble {
     stroke: rgba(255, 255, 255, 0.82);
     stroke-width: 2;
@@ -2185,11 +2192,11 @@ button {
     --light-2: #8ab7ff;
     --light-3: #dceaff;
     --light-4: #4f83d6;
-    --scene-symbol-1: "✡";
+    --scene-symbol-1: "\2721\FE0E";
     --scene-symbol-2: "✦";
-    --scene-symbol-3: "✡";
+    --scene-symbol-3: "\2721\FE0E";
     --scene-symbol-4: "•";
-    --scene-symbol-5: "✡";
+    --scene-symbol-5: "\2721\FE0E";
 }
 
 [data-theme="Islam"] {
