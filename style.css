@@ -1,0 +1,2692 @@
+@import url('https://fonts.googleapis.com/css2?family=Basic&display=swap');
+
+/* =========================
+   Base
+   ========================= */
+:root {
+    color-scheme: dark;
+
+    --title-font: "Basic", sans-serif;
+    --heading-font: "Basic", sans-serif;
+    --body-font: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+
+    --page-a: #071d18;
+    --page-b: #12392d;
+    --panel: rgba(8, 39, 31, 0.76);
+    --panel-border: rgba(255, 255, 255, 0.14);
+
+    --text: #f7fff9;
+    --muted: #c7ddd3;
+    --accent: #ffd66b;
+    --accent-soft: rgba(255, 214, 107, 0.2);
+    --button-text: #112019;
+
+    --tree-light: #0f684c;
+    --tree-mid: #0f684c;
+    --tree-dark: #0f684c;
+    --trunk-light: #8b5b3d;
+    --trunk-dark: #573420;
+    --garland: #f6d873;
+    --star: #ffe57d;
+    --star-center: #fff8cf;
+
+    --light-1: #ff5e78;
+    --light-2: #ffd166;
+    --light-3: #72c8ff;
+    --light-4: #f6f7ff;
+
+    --scene-symbol-1: "✦";
+    --scene-symbol-2: "•";
+    --scene-symbol-3: "✧";
+    --scene-symbol-4: "·";
+    --scene-symbol-5: "★";
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.08), transparent 25rem),
+        linear-gradient(145deg, var(--page-a), var(--page-b));
+    font-family: var(--body-font);
+    transition: background 450ms ease, color 250ms ease;
+}
+
+button,
+textarea {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+}
+
+.app-shell {
+    min-height: 100vh;
+    padding: clamp(1rem, 3vw, 2.25rem);
+    overflow: hidden;
+}
+
+/* =========================
+   Header
+   ========================= */
+.hero {
+    width: min(760px, 100%);
+    margin: 0 auto 1.25rem;
+    text-align: center;
+}
+
+.hero h1 {
+    margin: 0;
+    font-family: var(--title-font);
+    font-size: clamp(3.9rem, 11vw, 6.8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    transform: none;
+    text-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    margin: 0.8rem 0 0;
+    color: var(--muted);
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    line-height: 1.55;
+}
+
+/* =========================
+   Main Card
+   ========================= */
+.tree-card {
+    position: relative;
+    width: min(620px, 100%);
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--panel-border);
+    border-radius: clamp(1.4rem, 4vw, 2rem);
+    background:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.09), transparent 42%),
+        var(--panel);
+    box-shadow:
+        0 26px 70px rgba(0, 0, 0, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.tree-card::after {
+    content: "";
+    position: absolute;
+    right: -16%;
+    bottom: -30%;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    filter: blur(65px);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.scene-glow {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    width: 56%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    filter: blur(52px);
+    opacity: 0.55;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.tree-stage {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    min-height: 410px;
+    padding: 0.75rem 1rem 0;
+}
+
+#tree {
+    display: block;
+    width: min(350px, 88%);
+    height: auto;
+    overflow: visible;
+}
+
+#treeArtwork {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+}
+
+.theme-changing #treeArtwork {
+    animation: theme-pop 360ms ease-out;
+}
+
+/* =========================
+   Tree Forms
+   ========================= */
+.tree-form,
+.topper-variant {
+    display: none;
+}
+
+.tree-form-default,
+.topper-default {
+    display: block;
+}
+
+[data-theme="easter"] .tree-form-default,
+[data-theme="fourth"] .tree-form-default,
+[data-theme="scottish"] .tree-form-default,
+[data-theme="fall"] .tree-form-default,
+[data-theme="spring"] .tree-form-default,
+[data-theme="classy"] .topper-default,
+[data-theme="Judaism"] .topper-default,
+[data-theme="Islam"] .topper-default,
+[data-theme="fall"] .topper-default,
+[data-theme="spring"] .topper-default,
+[data-theme="easter"] .topper-default,
+[data-theme="scottish"] .topper-default,
+[data-theme="gothic"] .topper-default,
+[data-theme="bookish"] .topper-default,
+[data-theme="birthday"] .topper-default,
+[data-theme="teacher"] .topper-default {
+    display: none;
+}
+
+[data-theme="easter"] .tree-form-easter,
+[data-theme="fourth"] .tree-form-fourth,
+[data-theme="scottish"] .tree-form-scottish,
+[data-theme="fall"] .tree-form-deciduous,
+[data-theme="spring"] .tree-form-deciduous,
+[data-theme="classy"] .topper-classy,
+[data-theme="Judaism"] .topper-Judaism,
+[data-theme="Islam"] .topper-Islam,
+[data-theme="fall"] .topper-fall,
+[data-theme="spring"] .topper-spring,
+[data-theme="easter"] .topper-easter,
+[data-theme="scottish"] .topper-scottish,
+[data-theme="gothic"] .topper-gothic,
+[data-theme="bookish"] .topper-bookish,
+[data-theme="birthday"] .topper-birthday,
+[data-theme="teacher"] .topper-teacher {
+    display: block;
+}
+
+.ground-shadow {
+    fill: rgba(0, 0, 0, 0.2);
+    filter: blur(5px);
+}
+
+.garland {
+    fill: none;
+    stroke: var(--garland);
+    stroke-width: 4.5;
+    stroke-linecap: round;
+    stroke-dasharray: 5 9;
+    opacity: 0.9;
+}
+
+/* Easter silhouette */
+.easter-branch {
+    fill: none;
+    stroke: var(--trunk-dark);
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.easter-canopy {
+    stroke: rgba(255, 255, 255, 0.25);
+    stroke-width: 2;
+}
+
+.canopy-pink {
+    fill: #a8dcc0;
+}
+
+.canopy-mint {
+    fill: #a8dcc0;
+}
+
+.canopy-blue {
+    fill: #a8dcc0;
+}
+
+.canopy-lilac {
+    fill: #a8dcc0;
+}
+
+.easter-ribbon {
+    fill: none;
+    stroke: #fff1a8;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 9 7;
+}
+
+/* =========================
+   4th of July Tree
+   ========================= */
+.tree-form-fourth {
+    filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.2));
+}
+
+.fourth-tree-base {
+    fill: #244f9d;
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.fourth-tree-shadow {
+    fill: rgba(8, 24, 70, 0.24);
+}
+
+.fourth-tree-highlight {
+    fill: rgba(255, 255, 255, 0.075);
+}
+
+.fourth-ribbon {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+}
+
+.fourth-ribbon-red {
+    stroke: #df3f52;
+}
+
+.fourth-ribbon-white {
+    stroke: #fff8ee;
+}
+
+.fourth-stars polygon {
+    fill: #ffffff;
+    stroke: rgba(36, 79, 157, 0.7);
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+
+/* Red and white ornaments. */
+.fourth-bauble {
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 1.8;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+
+.bauble-red {
+    fill: #df3f52;
+}
+
+.bauble-white {
+    fill: #fff8ee;
+}
+
+.fourth-fireworks {
+    pointer-events: none;
+}
+
+.firework {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: fourth-firework-burst 3.2s ease-out infinite;
+}
+
+.firework path {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    animation: fourth-firework-draw 3.2s ease-out infinite;
+}
+
+.firework-red path {
+    stroke: #ff5268;
+    filter: drop-shadow(0 0 5px rgba(255, 82, 104, 0.8));
+}
+
+.firework-white path {
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+.firework-blue path {
+    stroke: #67b7ff;
+    filter: drop-shadow(0 0 5px rgba(103, 183, 255, 0.8));
+}
+
+.firework-one,
+.firework-one path {
+    animation-delay: -0.4s;
+}
+
+.firework-two,
+.firework-two path {
+    animation-delay: -1.5s;
+}
+
+.firework-three,
+.firework-three path {
+    animation-delay: -2.5s;
+}
+
+/* =========================
+   Scottish silhouette
+   ========================= */
+.highland-bough {
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.highland-light {
+    fill: var(--tree-light);
+}
+
+.highland-mid {
+    fill: var(--tree-mid);
+}
+
+.highland-dark {
+    fill: var(--tree-dark);
+}
+
+.highland-shadow {
+    fill: rgba(5, 27, 31, 0.55);
+}
+
+.tartan-line {
+    fill: none;
+    stroke-linecap: round;
+    opacity: 0.86;
+}
+
+.tartan-blue-one,
+.tartan-blue-two {
+    stroke: #a2bee6;
+    stroke-width: 7;
+}
+
+.tartan-purple-one,
+.tartan-purple-two {
+    stroke: #80507e;
+    stroke-width: 4;
+}
+
+
+/* =========================
+   Fall and Spring Tree
+   ========================= */
+.tree-form-deciduous {
+    filter: drop-shadow(0 12px 13px rgba(0, 0, 0, 0.18));
+}
+
+.season-trunk {
+    fill: url("#trunkGradient");
+}
+
+.season-branch {
+    fill: none;
+    stroke: var(--trunk-dark);
+    stroke-width: 9;
+    stroke-linecap: round;
+}
+
+.season-canopy ellipse {
+    fill: var(--season-canopy, #8ebc76);
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 1.4;
+}
+
+.season-canopy-highlight {
+    fill: rgba(255, 255, 255, 0.09);
+}
+
+[data-theme="fall"] .season-canopy ellipse:nth-child(3n + 1) {
+    fill: #9f3e28;
+}
+
+[data-theme="fall"] .season-canopy ellipse:nth-child(3n + 2) {
+    fill: #d66a2c;
+}
+
+[data-theme="fall"] .season-canopy ellipse:nth-child(3n) {
+    fill: #e3a83f;
+}
+
+[data-theme="fall"] .season-canopy-highlight {
+    fill: rgba(255, 222, 155, 0.12);
+}
+
+/* =========================
+   Classy Christmas
+   ========================= */
+.classy-swag {
+    fill: none;
+    stroke: #f3dfae;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 2 9;
+    opacity: 0.9;
+}
+
+.classy-bauble {
+    stroke: rgba(255, 255, 255, 0.72);
+    stroke-width: 2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: classy-shimmer 2.8s ease-in-out infinite;
+}
+
+.classy-gold {
+    fill: #d8b45e;
+}
+
+.classy-pearl {
+    fill: #fff7df;
+}
+
+.shimmer-two {
+    animation-delay: -0.9s;
+}
+
+.shimmer-three {
+    animation-delay: -1.8s;
+}
+
+/* =========================
+   Festival of Lights
+   ========================= */
+.Judaism-symbol {
+    fill: #f7fbff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: symbol-pulse 2.8s ease-in-out infinite;
+}
+
+.Judaism-bauble {
+    stroke: rgba(255, 255, 255, 0.82);
+    stroke-width: 2;
+}
+
+.Judaism-blue {
+    fill: #3f72c7;
+}
+
+.Judaism-silver {
+    fill: #dfe8f2;
+}
+
+.symbol-delay-two {
+    animation-delay: -0.9s;
+}
+
+.symbol-delay-three {
+    animation-delay: -1.8s;
+}
+
+/* =========================
+   Eid Moonlight
+   ========================= */
+[data-theme="Islam"] .garland {
+    stroke-width: 3.8;
+    stroke-dasharray: 1 10;
+    stroke-linecap: round;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 3px rgba(232, 198, 110, 0.42));
+}
+
+.eid-light-wire {
+    fill: none;
+    stroke: rgba(240, 199, 91, 0.65);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+}
+
+.eid-light {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: twinkle 1.65s ease-in-out infinite;
+}
+
+.eid-sparkle {
+    animation: eid-sparkle-glow 1.65s ease-in-out infinite;
+}
+
+.eid-light {
+    stroke: rgba(255, 255, 255, 0.75);
+    stroke-width: 0.9;
+}
+
+.eid-light-gold {
+    fill: #f3c95f;
+}
+
+.eid-light-ivory {
+    fill: #fff4cf;
+}
+
+.eid-light-mint {
+    fill: #c9f2df;
+}
+
+.eid-sparkle {
+    fill: #fff2bd;
+    stroke: #d9ad48;
+    stroke-width: 0.75;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 4px rgba(255, 232, 154, 0.62));
+}
+
+.eid-delay-two {
+    animation-delay: 0.45s;
+}
+
+.eid-delay-three {
+    animation-delay: 0.9s;
+}
+
+.Islam-lantern {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    filter:
+        drop-shadow(0 3px 4px rgba(0, 0, 0, 0.24))
+        drop-shadow(0 0 6px rgba(255, 209, 105, 0.38));
+    animation: lantern-sway 3.2s ease-in-out infinite;
+}
+
+.lantern-chain,
+.lantern-handle {
+    fill: none;
+    stroke: #f6d47d;
+    stroke-width: 1.55;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.lantern-cap,
+.lantern-foot,
+.lantern-finial {
+    fill: #e1b752;
+    stroke: #fff0b7;
+    stroke-width: 1.1;
+    stroke-linejoin: round;
+}
+
+.lantern-shell {
+    fill: rgba(10, 71, 53, 0.96);
+    stroke: #f4ce70;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.lantern-window {
+    fill: #ffe8a5;
+    stroke: #fff6cf;
+    stroke-width: 1.15;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px rgba(255, 225, 135, 0.9));
+}
+
+.lantern-delay-two {
+    animation-delay: -1.6s;
+}
+
+.lantern-delay-three {
+    animation-delay: -0.7s;
+}
+
+.Islam-crescent,
+.Islam-star {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: symbol-pulse 2.8s ease-in-out infinite;
+}
+
+.Islam-crescent {
+    fill: #f2c75c;
+    fill-rule: evenodd;
+    stroke: rgba(255, 245, 196, 0.76);
+    stroke-width: 0.75;
+    filter: drop-shadow(0 0 4px rgba(242, 199, 92, 0.48));
+}
+
+.Islam-star {
+    fill: #fff4c4;
+    stroke: #d6aa42;
+    stroke-width: 1.1;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 4px rgba(255, 237, 173, 0.52));
+}
+
+/* =========================
+   Fall maple leaves
+   ========================= */
+.fall-leaf {
+    stroke: rgba(79, 35, 17, 0.42);
+    stroke-width: 0.9;
+    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    filter: drop-shadow(0 2px 2px rgba(75, 31, 14, 0.24));
+    animation: leaf-glow 3.2s ease-in-out infinite;
+}
+
+.leaf-shape {
+    stroke-linejoin: round;
+}
+
+.leaf-vein {
+    fill: none;
+    stroke: rgba(83, 39, 20, 0.48);
+    stroke-width: 0.85;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.leaf-red {
+    fill: #a9442a;
+}
+
+.leaf-orange {
+    fill: #d96d2d;
+}
+
+.leaf-gold {
+    fill: #e6a93d;
+}
+
+.leaf-rust {
+    fill: #8f3927;
+}
+
+.leaf-amber {
+    fill: #ef8d32;
+}
+
+.leaf-delay-two {
+    animation-delay: -1s;
+}
+
+.leaf-delay-three {
+    animation-delay: -2s;
+}
+
+.falling-leaf {
+    animation: leaf-fall 4.6s ease-in-out infinite;
+}
+
+.falling-two {
+    animation-delay: -2.3s;
+}
+
+.falling-three {
+    animation-delay: -1.15s;
+}
+
+/* =========================
+   Spring blossoms
+   ========================= */
+.spring-blossom,
+.spring-topper-blossom {
+    fill: #ffd4e4;
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 0.8;
+    transform-box: fill-box;
+    transform-origin: center;
+    filter: drop-shadow(0 2px 2px rgba(72, 91, 77, 0.18));
+    animation: blossom-bloom 2.8s ease-in-out infinite;
+}
+
+.blossom-pink {
+    fill: #ffd0e2;
+}
+
+.blossom-lilac {
+    fill: #d9c7ff;
+}
+
+.blossom-white {
+    fill: #fffaf2;
+}
+
+.blossom-blue {
+    fill: #bfe4ff;
+}
+
+.blossom-coral {
+    fill: #ffb9aa;
+}
+
+.blossom-yellow {
+    fill: #ffe59a;
+}
+
+.spring-blossom .blossom-center,
+.spring-topper-blossom .blossom-center,
+.blossom-center {
+    fill: #f5bd55;
+}
+
+.bloom-two {
+    animation-delay: -0.9s;
+}
+
+.bloom-three {
+    animation-delay: -1.8s;
+}
+
+/* =========================
+   Lights and Ornaments
+   ========================= */
+.bulb {
+    stroke: rgba(255, 255, 255, 0.62);
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: twinkle 1.6s ease-in-out infinite;
+}
+
+.bulb-one {
+    fill: var(--light-1);
+}
+
+.bulb-two {
+    fill: var(--light-2);
+}
+
+.bulb-three {
+    fill: var(--light-3);
+}
+
+.bulb-four {
+    fill: var(--light-4);
+}
+
+.delay-1 {
+    animation-delay: 0s;
+}
+
+.delay-2 {
+    animation-delay: 0.45s;
+}
+
+.delay-3 {
+    animation-delay: 0.9s;
+}
+
+[data-theme="easter"] #lights,
+[data-theme="fourth"] #lights,
+[data-theme="scottish"] #lights,
+[data-theme="fall"] #lights,
+[data-theme="spring"] #lights,
+[data-theme="Islam"] #lights {
+    display: none;
+}
+
+.ornament {
+    stroke: rgba(255, 255, 255, 0.58);
+    stroke-width: 2;
+}
+
+.ornament-a {
+    fill: #e94d69;
+}
+
+.ornament-b {
+    fill: #f6cf65;
+}
+
+.ornament-c {
+    fill: #63b7ff;
+}
+
+.ornament-d {
+    fill: #fff4d4;
+}
+
+.theme-decor {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.theme-decor text {
+    font-size: 22px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.25));
+}
+
+[data-theme="classic"] .decor-classic,
+[data-theme="classy"] .decor-classy,
+[data-theme="Judaism"] .decor-Judaism,
+[data-theme="Islam"] .decor-Islam,
+[data-theme="fall"] .decor-fall,
+[data-theme="spring"] .decor-spring,
+[data-theme="beach"] .decor-beach,
+[data-theme="halloween"] .decor-halloween,
+[data-theme="dance"] .decor-dance,
+[data-theme="stpatrick"] .decor-stpatrick,
+[data-theme="space"] .decor-space,
+[data-theme="nineties"] .decor-nineties,
+[data-theme="winter"] .decor-winter,
+[data-theme="candy"] .decor-candy,
+[data-theme="girly"] .decor-girly,
+[data-theme="gothic"] .decor-gothic,
+[data-theme="bookish"] .decor-bookish,
+[data-theme="birthday"] .decor-birthday,
+[data-theme="teacher"] .decor-teacher,
+[data-theme="easter"] .decor-easter,
+[data-theme="fourth"] .decor-fourth,
+[data-theme="scottish"] .decor-scottish {
+    opacity: 1;
+}
+
+.egg {
+    stroke: rgba(255, 255, 255, 0.72);
+    stroke-width: 2;
+}
+
+.egg-pink {
+    fill: #ff9fca;
+}
+
+.egg-yellow {
+    fill: #ffe18c;
+}
+
+.egg-blue {
+    fill: #91c8ff;
+}
+
+.egg-green {
+    fill: #9fe3bc;
+}
+
+.egg-line {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.silver-bauble {
+    fill: #dfe8ef;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+/* =========================
+   Gothic, Bookish, Birthday, and Teacher Decorations
+   ========================= */
+.gothic-chain {
+    fill: none;
+    stroke: #b58ad8;
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    stroke-dasharray: 2 8;
+    opacity: 0.78;
+}
+
+.gothic-bat {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gothic-bat-flutter 2.4s ease-in-out infinite;
+}
+
+.gothic-candle {
+    filter: drop-shadow(0 0 7px rgba(255, 197, 105, 0.8));
+}
+
+.gothic-rose,
+.gothic-heart {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+}
+
+.gothic-mist-line {
+    fill: none;
+    stroke: rgba(220, 203, 238, 0.58);
+    stroke-width: 5;
+    stroke-linecap: round;
+    filter: blur(2px);
+    animation: gothic-mist-drift 4.8s ease-in-out infinite;
+}
+
+.gothic-mist-two {
+    animation-delay: -2.4s;
+}
+
+.bookish-garland {
+    fill: none;
+    stroke: #d7b36a;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-dasharray: 7 7;
+    opacity: 0.88;
+}
+
+.bookish-item {
+    filter: drop-shadow(0 3px 3px rgba(31, 18, 12, 0.32));
+}
+
+.bookish-page {
+    fill: #fff4d7;
+    stroke: #b98a4c;
+    stroke-width: 1;
+    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bookish-page-flutter 3.1s ease-in-out infinite;
+}
+
+.bookish-page-two {
+    animation-delay: -1s;
+}
+
+.bookish-page-three {
+    animation-delay: -2s;
+}
+
+.birthday-balloon {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: birthday-balloon-bob 3s ease-in-out infinite;
+}
+
+.birthday-balloon-two {
+    animation-delay: -1.5s;
+}
+
+.birthday-balloon-fill {
+    stroke: rgba(255, 255, 255, 0.82);
+    stroke-width: 1.7;
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.2));
+}
+
+.balloon-pink {
+    fill: #ff7dbb;
+}
+
+.balloon-blue {
+    fill: #65c8ff;
+}
+
+.birthday-balloon-string {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.72);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+}
+
+.birthday-item {
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.22));
+}
+
+.birthday-confetti {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: birthday-confetti-fall 3.3s linear infinite;
+}
+
+.confetti-one {
+    fill: #ffdd57;
+}
+
+.confetti-two {
+    fill: #ff668f;
+    animation-delay: -0.8s;
+}
+
+.confetti-three {
+    fill: #64e0ca;
+    animation-delay: -1.6s;
+}
+
+.confetti-four {
+    fill: #a77cff;
+    animation-delay: -2.4s;
+}
+
+.teacher-chalk-line {
+    fill: none;
+    stroke: #fff7d2;
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: teacher-chalk-draw 3.4s ease-in-out infinite;
+}
+
+.teacher-chalk-two {
+    animation-delay: -1.7s;
+}
+
+.teacher-item {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: teacher-item-bounce 3s ease-in-out infinite;
+}
+
+.teacher-item-two {
+    animation-delay: -0.7s;
+}
+
+.teacher-item-three {
+    animation-delay: -1.4s;
+}
+
+.teacher-item-four {
+    animation-delay: -2.1s;
+}
+
+.teacher-chalk-text {
+    fill: #fff7d2;
+    font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+    font-size: 13px !important;
+    font-weight: 800;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 3px rgba(255, 247, 210, 0.4)) !important;
+}
+
+/* =========================
+   Toppers
+   ========================= */
+.star {
+    fill: var(--star);
+    stroke: rgba(255, 255, 255, 0.65);
+    stroke-width: 1.4;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: star-pulse 2.5s ease-in-out infinite;
+}
+
+.topper-center {
+    fill: var(--star-center);
+}
+
+.flower-petal {
+    fill: #ffd0e5;
+    stroke: rgba(255, 255, 255, 0.6);
+    stroke-width: 1.5;
+}
+
+.flower-center {
+    fill: #fff0a8;
+}
+
+.thistle-leaf {
+    fill: #789ac8;
+    stroke: #dce8ff;
+    stroke-width: 1.5;
+}
+
+.thistle-bloom {
+    fill: #9f72b0;
+    stroke: #e7ceed;
+    stroke-width: 2;
+}
+
+.thistle-stem {
+    fill: none;
+    stroke: #92b9ad;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+
+.classy-topper-star {
+    fill: #d8b45e;
+    stroke: #fff8df;
+    stroke-width: 1.8;
+}
+
+.classy-topper-gem {
+    fill: #fff9e8;
+}
+
+.Judaism-topper-star {
+    fill: none;
+    stroke: #eef6ff;
+    stroke-width: 5;
+    stroke-linejoin: round;
+}
+
+.Judaism-topper-center {
+    fill: #7ca9ed;
+}
+
+.eid-moon-star-mark {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: symbol-pulse 2.8s ease-in-out infinite;
+}
+
+.eid-moon-fill {
+    fill: #f4cb63;
+    filter:
+        drop-shadow(0 0 5px rgba(244, 203, 99, 0.72))
+        drop-shadow(0 2px 2px rgba(0, 0, 0, 0.12));
+}
+
+.eid-moon-star-outer {
+    fill: #fff0ad;
+    stroke: rgba(255, 240, 173, 0.96);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    filter:
+        drop-shadow(0 0 4px rgba(255, 230, 145, 0.72))
+        drop-shadow(0 2px 2px rgba(0, 0, 0, 0.14));
+}
+
+.eid-moon-star-inner {
+    fill: rgba(5, 48, 38, 0.98);
+    stroke: none;
+}
+
+.eid-small-moon-star {
+    animation-delay: -0.9s;
+}
+
+.fall-topper-leaf {
+    stroke: rgba(255, 255, 255, 0.38);
+    stroke-width: 0.9;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 2px 2px rgba(72, 28, 12, 0.22));
+}
+
+.gothic-topper-moon {
+    fill: #d8b4f0;
+    stroke: #fff0ff;
+    stroke-width: 1.4;
+    filter: drop-shadow(0 0 7px rgba(202, 151, 234, 0.72));
+}
+
+.gothic-topper-bat {
+    fill: #24152d;
+    stroke: #d8b4f0;
+    stroke-width: 1;
+    stroke-linejoin: round;
+}
+
+/* =========================
+    Stack-of-books topper
+   ========================= */
+.topper-bookish {
+    filter:
+        drop-shadow(0 5px 5px rgba(32, 18, 10, 0.34))
+        drop-shadow(0 0 7px rgba(231, 196, 122, 0.28));
+}
+
+.book-stack-cover {
+    stroke: #f0d493;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+}
+
+.book-stack-cover-bottom {
+    fill: #75463a;
+}
+
+.book-stack-cover-middle {
+    fill: #315a43;
+}
+
+.book-stack-cover-top {
+    fill: #a65e43;
+}
+
+.book-stack-pages {
+    fill: #fff4d7;
+    stroke: #c89c59;
+    stroke-width: 1;
+}
+
+.book-stack-spine {
+    fill: none;
+    stroke: rgba(66, 35, 24, 0.75);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.book-stack-page-lines {
+    fill: none;
+    stroke: rgba(145, 103, 58, 0.55);
+    stroke-width: 0.8;
+    stroke-linecap: round;
+}
+
+.book-stack-bookmark {
+    fill: #d79a48;
+    stroke: #fff0bd;
+    stroke-width: 0.8;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 2px 2px rgba(48, 25, 15, 0.25));
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: bookish-bookmark-sway 2.8s ease-in-out infinite;
+}
+
+.book-stack-glint {
+    fill: none;
+    stroke: #fff0b8;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 4px rgba(255, 226, 155, 0.9));
+    animation: bookish-glint 2.4s ease-in-out infinite;
+}
+
+.glint-two {
+    animation-delay: -1.2s;
+}
+
+.birthday-hat {
+    fill: #ff6fae;
+    stroke: #fff2a8;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.birthday-hat-stripe {
+    fill: none;
+    stroke: #65d8ff;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.birthday-hat-pom {
+    fill: #fff07b;
+    stroke: #ffffff;
+    stroke-width: 1.5;
+}
+
+.birthday-hat-dot {
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 0.8;
+}
+
+.dot-one {
+    fill: #7cf0c8;
+}
+
+.dot-two {
+    fill: #fff07b;
+}
+
+.dot-three {
+    fill: #a982ff;
+}
+
+.teacher-apple {
+    fill: #e84b4b;
+    stroke: #fff5dc;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.teacher-apple-stem {
+    fill: none;
+    stroke: #6f472b;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.teacher-apple-leaf {
+    fill: #79b85a;
+    stroke: #e9ffd8;
+    stroke-width: 1.4;
+    stroke-linejoin: round;
+}
+
+.teacher-apple-shine {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.75);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+/* =========================
+   Floating Details
+   ========================= */
+.floating-icons {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    color: var(--accent);
+    font-size: clamp(1rem, 3vw, 1.45rem);
+    text-shadow: 0 0 18px var(--accent);
+    opacity: 0.5;
+    animation: float-symbol 5s ease-in-out infinite;
+}
+
+.floating-icon::before {
+    content: var(--scene-symbol-1);
+}
+
+.icon-two {
+    top: 27%;
+    right: 12%;
+    animation-delay: -1.5s;
+}
+
+.icon-two::before {
+    content: var(--scene-symbol-2);
+}
+
+.icon-three {
+    top: 52%;
+    left: 8%;
+    animation-delay: -3s;
+}
+
+.icon-three::before {
+    content: var(--scene-symbol-3);
+}
+
+.icon-four {
+    top: 54%;
+    right: 8%;
+    animation-delay: -4s;
+}
+
+.icon-four::before {
+    content: var(--scene-symbol-4);
+}
+
+.icon-five {
+    top: 16%;
+    right: auto;
+    left: 17%;
+    animation-delay: -2.2s;
+}
+
+.icon-five::before {
+    content: var(--scene-symbol-5);
+}
+
+/* =========================
+   Theme Information
+   ========================= */
+.theme-copy {
+    position: relative;
+    z-index: 3;
+    padding: 0 1.5rem 1.2rem;
+    text-align: center;
+}
+
+.theme-label {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.theme-copy h2 {
+    margin: 0.25rem 0 0.45rem;
+    font-family: var(--heading-font);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.theme-copy p:last-child {
+    max-width: 470px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.55;
+}
+
+/* =========================
+   Export Bar
+   ========================= */
+.export-bar {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    row-gap: 0;
+    align-items: center;
+    margin: 0 1rem 1rem;
+    padding: 0.95rem 1rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 1rem;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            transparent 48%
+        ),
+        var(--panel);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 10px 28px rgba(0, 0, 0, 0.12);
+    transition:
+        color 350ms ease,
+        background 350ms ease,
+        border-color 350ms ease;
+}
+
+.export-intro {
+    display: grid;
+    gap: 0.12rem;
+}
+
+.export-intro strong {
+    color: var(--text);
+    font-family: var(--heading-font);
+    font-size: 1.15rem;
+}
+
+.export-intro span {
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.export-actions {
+    display: flex;
+    gap: 0.55rem;
+}
+
+.export-button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 42px;
+    margin: 0;
+    padding: 0.62rem 0.82rem;
+    border-radius: 0.75rem;
+    font-size: 0.87rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: none;
+    transition:
+        transform 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+}
+
+.export-button svg {
+    display: block;
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.export-button:hover {
+    transform: translateY(-1px);
+}
+
+.export-button.primary {
+    border: 1px solid transparent;
+    color: var(--button-text);
+    background: var(--accent);
+}
+
+.export-button.secondary {
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.export-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.export-button:focus-visible,
+.theme-button:focus-visible,
+.close-dialog-button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.export-button.copied {
+    transform: scale(1.03);
+}
+
+.copy-status {
+    grid-column: 1 / -1;
+    min-height: 0;
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.copy-status:empty {
+    display: none;
+}
+
+.copy-status:not(:empty) {
+    display: block;
+    margin-top: 0.65rem;
+}
+
+/* =========================
+   Theme Buttons
+   ========================= */
+.controls {
+    width: min(960px, 100%);
+    margin: 1rem auto 0;
+}
+
+.theme-buttons {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.25rem 0.1rem 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+
+.theme-buttons::-webkit-scrollbar {
+    height: 7px;
+}
+
+.theme-buttons::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--accent);
+}
+
+.theme-button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.42rem;
+    min-height: 42px;
+    margin: 0;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.07);
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        transform 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+}
+
+.theme-button:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.theme-button.active {
+    color: var(--button-text);
+    border-color: transparent;
+    background: var(--accent);
+}
+
+.theme-button span:first-child {
+    font-size: 1rem;
+}
+
+/* =========================
+   Code Dialog
+   ========================= */
+.code-dialog {
+    width: min(740px, calc(100% - 1.5rem));
+    max-height: min(760px, calc(100vh - 2rem));
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--panel-border);
+    border-radius: 1.3rem;
+    color: var(--text);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.08),
+            transparent 42%
+        ),
+        var(--panel);
+    box-shadow: 0 35px 100px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition:
+        color 350ms ease,
+        background 350ms ease,
+        border-color 350ms ease;
+}
+
+.code-dialog::backdrop {
+    background: rgba(2, 10, 9, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.25rem 0.7rem;
+}
+
+.dialog-header p {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.dialog-header h2 {
+    margin: 0.15rem 0 0;
+    color: var(--text);
+    font-family: var(--heading-font);
+    font-size: 2.2rem;
+}
+
+.close-dialog-button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--panel-border);
+    border-radius: 50%;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        color 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+}
+
+.close-dialog-button:hover {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.dialog-description {
+    margin: 0;
+    padding: 0 1.25rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.svg-code-output {
+    display: block;
+    width: calc(100% - 2.5rem);
+    height: min(430px, 50vh);
+    margin: 0 1.25rem;
+    padding: 1rem;
+    resize: vertical;
+    border: 1px solid var(--panel-border);
+    border-radius: 0.85rem;
+    color: var(--text);
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.28),
+            rgba(0, 0, 0, 0.28)
+        ),
+        var(--panel);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    transition:
+        color 350ms ease,
+        background 350ms ease,
+        border-color 350ms ease;
+}
+
+.svg-code-output:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+/* =========================
+   Theme Palettes
+   ========================= */
+[data-theme="classic"] {
+    --page-a: #071d18;
+    --page-b: #12392d;
+    --panel: rgba(8, 39, 31, 0.76);
+    --accent: #ffd66b;
+    --accent-soft: rgba(255, 214, 107, 0.2);
+    --tree-light: #0f684c;
+    --tree-mid: #0f684c;
+    --tree-dark: #0f684c;
+    --garland: #f6d873;
+    --star: #ffe57d;
+    --light-1: #ff5e78;
+    --light-2: #ffd166;
+    --light-3: #72c8ff;
+    --light-4: #f6f7ff;
+}
+
+[data-theme="beach"] {
+    --page-a: #063d4c;
+    --page-b: #dc9860;
+    --panel: rgba(5, 59, 70, 0.62);
+    --text: #fffdf6;
+    --muted: #e8f5ef;
+    --accent: #ffd66f;
+    --accent-soft: rgba(255, 214, 111, 0.28);
+    --tree-light: #168b82;
+    --tree-mid: #168b82;
+    --tree-dark: #168b82;
+    --trunk-light: #d8a36b;
+    --trunk-dark: #8f5e35;
+    --garland: #ffe2a5;
+    --star: #ffd66f;
+    --light-1: #ff806f;
+    --light-2: #ffd86f;
+    --light-3: #73e2d3;
+    --light-4: #f7fff7;
+    --scene-symbol-1: "☀";
+    --scene-symbol-2: "≈";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "●";
+    --scene-symbol-5: "☀";
+}
+
+[data-theme="halloween"] {
+    --page-a: #12091d;
+    --page-b: #3a163e;
+    --panel: rgba(24, 10, 35, 0.78);
+    --accent: #ff9f43;
+    --accent-soft: rgba(255, 105, 0, 0.24);
+    --tree-light: #283f21;
+    --tree-mid: #283f21;
+    --tree-dark: #283f21;
+    --trunk-light: #744a34;
+    --trunk-dark: #39241b;
+    --garland: #9f67ff;
+    --star: #ff9f43;
+    --light-1: #ff6b35;
+    --light-2: #a66cff;
+    --light-3: #65ff7d;
+    --light-4: #f1e6ff;
+    --scene-symbol-1: "•";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "☾";
+    --scene-symbol-4: "🕷";
+    --scene-symbol-5: "🕯";
+}
+
+[data-theme="dance"] {
+    --page-a: #16072d;
+    --page-b: #0a4772;
+    --panel: rgba(18, 11, 50, 0.72);
+    --accent: #ff73df;
+    --accent-soft: rgba(255, 72, 210, 0.28);
+    --tree-light: #6b50c7;
+    --tree-mid: #6b50c7;
+    --tree-dark: #6b50c7;
+    --garland: #74f7ff;
+    --star: #ff73df;
+    --light-1: #ff4fc3;
+    --light-2: #f8f95c;
+    --light-3: #52eeff;
+    --light-4: #b688ff;
+    --scene-symbol-1: "♪";
+    --scene-symbol-2: "♫";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "♪";
+    --scene-symbol-5: "♬";
+}
+
+[data-theme="dance"] #treeArtwork {
+    animation: tree-dance 1.1s ease-in-out infinite;
+}
+
+[data-theme="stpatrick"] {
+    --page-a: #052c20;
+    --page-b: #1e6a3f;
+    --panel: rgba(4, 47, 31, 0.74);
+    --accent: #ffd85b;
+    --accent-soft: rgba(255, 216, 91, 0.24);
+    --tree-light: #13713d;
+    --tree-mid: #13713d;
+    --tree-dark: #13713d;
+    --garland: #f4d44d;
+    --star: #ffd85b;
+    --light-1: #76f28f;
+    --light-2: #ffd85b;
+    --light-3: #f7fff7;
+    --light-4: #25d76d;
+    --scene-symbol-1: "☘";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "☘";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "☘";
+}
+
+[data-theme="space"] {
+    --page-a: #05071e;
+    --page-b: #25144f;
+    --panel: rgba(7, 8, 35, 0.78);
+    --accent: #8ed8ff;
+    --accent-soft: rgba(92, 169, 255, 0.25);
+    --tree-light: #262b83;
+    --tree-mid: #262b83;
+    --tree-dark: #262b83;
+    --trunk-light: #6e5d8f;
+    --trunk-dark: #342b52;
+    --garland: #8ed8ff;
+    --star: #fff4a8;
+    --light-1: #ff6ad5;
+    --light-2: #fff077;
+    --light-3: #75d7ff;
+    --light-4: #a99bff;
+    --scene-symbol-1: "✦";
+    --scene-symbol-2: "✧";
+    --scene-symbol-3: "⋆";
+    --scene-symbol-4: "✦";
+    --scene-symbol-5: "☄";
+}
+
+[data-theme="nineties"] {
+    --page-a: #1e0e49;
+    --page-b: #0b7d84;
+    --panel: rgba(27, 13, 70, 0.7);
+    --accent: #f9ef42;
+    --accent-soft: rgba(255, 238, 56, 0.24);
+    --tree-light: #21a9b7;
+    --tree-mid: #21a9b7;
+    --tree-dark: #21a9b7;
+    --garland: #ff6edb;
+    --star: #f9ef42;
+    --light-1: #ff4fc3;
+    --light-2: #f9ef42;
+    --light-3: #29f0e1;
+    --light-4: #a76eff;
+    --scene-symbol-1: "▲";
+    --scene-symbol-2: "○";
+    --scene-symbol-3: "■";
+    --scene-symbol-4: "✦";
+    --scene-symbol-5: "◆";
+}
+
+[data-theme="winter"] {
+    --page-a: #0b2842;
+    --page-b: #587a9a;
+    --panel: rgba(12, 42, 68, 0.7);
+    --accent: #eaf8ff;
+    --accent-soft: rgba(196, 234, 255, 0.28);
+    --tree-light: #578697;
+    --tree-mid: #578697;
+    --tree-dark: #578697;
+    --trunk-light: #8e765f;
+    --trunk-dark: #5a4636;
+    --garland: #dff6ff;
+    --star: #f6fdff;
+    --light-1: #e9fbff;
+    --light-2: #9ce8ff;
+    --light-3: #c7d9ff;
+    --light-4: #ffffff;
+    --scene-symbol-1: "❄";
+    --scene-symbol-2: "·";
+    --scene-symbol-3: "❅";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "❆";
+}
+
+[data-theme="candy"] {
+    --page-a: #62335f;
+    --page-b: #ef9fbb;
+    --panel: rgba(92, 44, 84, 0.62);
+    --accent: #fff2a8;
+    --accent-soft: rgba(255, 213, 240, 0.32);
+    --tree-light: #56bcae;
+    --tree-mid: #56bcae;
+    --tree-dark: #56bcae;
+    --trunk-light: #cf8b67;
+    --trunk-dark: #8f5b45;
+    --garland: #fff1a8;
+    --star: #fff1a8;
+    --light-1: #ff78b5;
+    --light-2: #fff08f;
+    --light-3: #7fe8da;
+    --light-4: #d4a3ff;
+    --scene-symbol-1: "●";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "●";
+    --scene-symbol-4: "✧";
+    --scene-symbol-5: "✧";
+}
+
+[data-theme="girly"] {
+    --page-a: #4b183d;
+    --page-b: #dd79a6;
+    --panel: rgba(88, 28, 72, 0.64);
+    --accent: #ffe1f0;
+    --accent-soft: rgba(255, 182, 220, 0.3);
+    --tree-light: #c85d98;
+    --tree-mid: #c85d98;
+    --tree-dark: #c85d98;
+    --trunk-light: #bf7a76;
+    --trunk-dark: #744448;
+    --garland: #fff0b8;
+    --star: #ffe4a8;
+    --light-1: #ff86bf;
+    --light-2: #ffe8a4;
+    --light-3: #d7a6ff;
+    --light-4: #fff1f8;
+    --scene-symbol-1: "♡";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "♡";
+    --scene-symbol-5: "✿";
+}
+
+
+[data-theme="gothic"] {
+    --page-a: #09060f;
+    --page-b: #32163f;
+    --panel: rgba(18, 10, 26, 0.82);
+    --text: #fff5ff;
+    --muted: #d7c4df;
+    --accent: #d6a5ef;
+    --accent-soft: rgba(193, 118, 229, 0.28);
+    --button-text: #1c0d24;
+    --tree-light: #33203e;
+    --tree-mid: #2a1934;
+    --tree-dark: #1a1022;
+    --trunk-light: #5c3c4d;
+    --trunk-dark: #2b1825;
+    --garland: #b78bd4;
+    --star: #d8b4f0;
+    --light-1: #9e65c7;
+    --light-2: #e8b0dd;
+    --light-3: #7386c9;
+    --light-4: #fff1ce;
+    --scene-symbol-1: "☾";
+    --scene-symbol-2: "•";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "♰";
+    --scene-symbol-5: "☾";
+}
+
+[data-theme="bookish"] {
+    --page-a: #20130e;
+    --page-b: #6f3f2c;
+    --panel: rgba(45, 27, 19, 0.78);
+    --text: #fff8e8;
+    --muted: #e5d2b8;
+    --accent: #e7c47a;
+    --accent-soft: rgba(231, 196, 122, 0.26);
+    --button-text: #2b1a10;
+    --tree-light: #315a43;
+    --tree-mid: #294c39;
+    --tree-dark: #1f3a2d;
+    --trunk-light: #9a6544;
+    --trunk-dark: #523421;
+    --garland: #d5ae64;
+    --star: #f1d58c;
+    --light-1: #f2c66e;
+    --light-2: #d98b63;
+    --light-3: #94c6a5;
+    --light-4: #fff3d0;
+    --scene-symbol-1: "•";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "❧";
+    --scene-symbol-4: "✧";
+    --scene-symbol-5: "✧";
+}
+
+[data-theme="birthday"] {
+    --page-a: #49236b;
+    --page-b: #e0609c;
+    --panel: rgba(74, 31, 100, 0.67);
+    --text: #fffaff;
+    --muted: #f5dcf2;
+    --accent: #fff07b;
+    --accent-soft: rgba(255, 116, 183, 0.3);
+    --button-text: #33204a;
+    --tree-light: #42a889;
+    --tree-mid: #369174;
+    --tree-dark: #28705a;
+    --trunk-light: #bf7b58;
+    --trunk-dark: #754831;
+    --garland: #fff07b;
+    --star: #fff07b;
+    --light-1: #ff6fae;
+    --light-2: #fff07b;
+    --light-3: #65d8ff;
+    --light-4: #8ff0c8;
+    --scene-symbol-1: "•";
+    --scene-symbol-2: "●";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "◆";
+    --scene-symbol-5: "◆";
+}
+
+[data-theme="teacher"] {
+    --page-a: #143229;
+    --page-b: #9a5a2f;
+    --panel: rgba(24, 58, 47, 0.75);
+    --text: #fffaf0;
+    --muted: #dde9d7;
+    --accent: #ffd56b;
+    --accent-soft: rgba(255, 213, 107, 0.25);
+    --button-text: #1d372d;
+    --tree-light: #3f7a57;
+    --tree-mid: #356b4b;
+    --tree-dark: #28533c;
+    --trunk-light: #9f6844;
+    --trunk-dark: #5a3926;
+    --garland: #fff0b0;
+    --star: #e94f4f;
+    --light-1: #e94f4f;
+    --light-2: #ffd56b;
+    --light-3: #79c8ff;
+    --light-4: #f7fff0;
+    --scene-symbol-1: "A+";
+    --scene-symbol-2: "✎";
+    --scene-symbol-3: "123";
+    --scene-symbol-4: "★";
+    --scene-symbol-5: "✓";
+}
+
+[data-theme="classy"] {
+    --page-a: #111914;
+    --page-b: #4c4330;
+    --panel: rgba(20, 29, 23, 0.78);
+    --accent: #e3c774;
+    --accent-soft: rgba(227, 199, 116, 0.24);
+    --tree-light: #173f31;
+    --tree-mid: #173f31;
+    --tree-dark: #173f31;
+    --trunk-light: #8f6949;
+    --trunk-dark: #553b2a;
+    --garland: #eadbb3;
+    --star: #e1c16e;
+    --light-1: #fff6dd;
+    --light-2: #e4c66c;
+    --light-3: #f5ead0;
+    --light-4: #ffffff;
+    --scene-symbol-1: "✦";
+    --scene-symbol-2: "◆";
+    --scene-symbol-3: "✧";
+    --scene-symbol-4: "·";
+    --scene-symbol-5: "✦";
+}
+
+[data-theme="Judaism"] {
+    --page-a: #071a36;
+    --page-b: #315b9a;
+    --panel: rgba(8, 27, 61, 0.76);
+    --accent: #dceaff;
+    --accent-soft: rgba(153, 193, 255, 0.25);
+    --tree-light: #2459a6;
+    --tree-mid: #2459a6;
+    --tree-dark: #2459a6;
+    --trunk-light: #8a745c;
+    --trunk-dark: #514234;
+    --garland: #edf5ff;
+    --star: #f7fbff;
+    --light-1: #ffffff;
+    --light-2: #8ab7ff;
+    --light-3: #dceaff;
+    --light-4: #4f83d6;
+    --scene-symbol-1: "✡";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "✡";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "✡";
+}
+
+[data-theme="Islam"] {
+    --page-a: #041b16;
+    --page-b: #175f4a;
+    --panel: rgba(5, 39, 31, 0.76);
+    --accent: #f1ca67;
+    --accent-soft: rgba(241, 202, 103, 0.25);
+    --tree-light: #167356;
+    --tree-mid: #125f47;
+    --tree-dark: #0b4938;
+    --trunk-light: #8e6846;
+    --trunk-dark: #523a28;
+    --garland: #d9b85a;
+    --star: #f3ce72;
+    --light-1: #fff0b0;
+    --light-2: #f1ca67;
+    --light-3: #d9fff0;
+    --light-4: #ffffff;
+    --scene-symbol-1: "☾";
+    --scene-symbol-2: "☾";
+    --scene-symbol-3: "☾";
+    --scene-symbol-4: "☾";
+    --scene-symbol-5: "☾";
+}
+
+[data-theme="fall"] {
+    --page-a: #32170d;
+    --page-b: #9b4d23;
+    --panel: rgba(62, 27, 14, 0.73);
+    --accent: #f2b34c;
+    --accent-soft: rgba(242, 179, 76, 0.26);
+    --season-canopy: #b85a2e;
+    --trunk-light: #8f5a36;
+    --trunk-dark: #51311f;
+    --scene-symbol-1: "🍂";
+    --scene-symbol-2: "🍁";
+    --scene-symbol-3: "🍁";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "·";
+}
+
+[data-theme="spring"] {
+    --page-a: #244d43;
+    --page-b: #d28daf;
+    --panel: rgba(37, 78, 69, 0.65);
+    --accent: #ffe3a7;
+    --accent-soft: rgba(255, 216, 232, 0.3);
+    --season-canopy: #79b986;
+    --trunk-light: #9b704e;
+    --trunk-dark: #5b3e2b;
+    --scene-symbol-1: "✿";
+    --scene-symbol-2: "•";
+    --scene-symbol-3: "❀";
+    --scene-symbol-4: "✦";
+    --scene-symbol-5: "✾";
+}
+
+[data-theme="easter"] {
+    --page-a: #3d6470;
+    --page-b: #d9abc9;
+    --panel: rgba(54, 88, 91, 0.62);
+    --accent: #fff0a8;
+    --accent-soft: rgba(255, 229, 170, 0.28);
+    --trunk-light: #c99a72;
+    --trunk-dark: #7b5741;
+    --scene-symbol-1: "✿";
+    --scene-symbol-2: "•";
+    --scene-symbol-3: "❀";
+    --scene-symbol-4: "✦";
+    --scene-symbol-5: "✿";
+}
+
+[data-theme="fourth"] {
+    --page-a: #061c3c;
+    --page-b: #8b172d;
+    --panel: rgba(8, 30, 66, 0.74);
+    --accent: #ffffff;
+    --accent-soft: rgba(255, 255, 255, 0.22);
+    --trunk-light: #a36d4f;
+    --trunk-dark: #613d2d;
+    --scene-symbol-1: "★";
+    --scene-symbol-2: "✦";
+    --scene-symbol-3: "★";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "★";
+}
+
+[data-theme="scottish"] {
+    --page-a: #071f2e;
+    --page-b: #415b59;
+    --panel: rgba(9, 38, 47, 0.75);
+    --accent: #c6d6ff;
+    --accent-soft: rgba(174, 197, 255, 0.24);
+    --tree-light: #315c57;
+    --tree-mid: #315c57;
+    --tree-dark: #315c57;
+    --trunk-light: #8d684b;
+    --trunk-dark: #503725;
+    --scene-symbol-1: "✦";
+    --scene-symbol-2: "╳";
+    --scene-symbol-3: "•";
+    --scene-symbol-4: "╳";
+    --scene-symbol-5: "✤";
+}
+
+/* =========================
+   Motion
+   ========================= */
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.72;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.16);
+    }
+}
+
+@keyframes eid-sparkle-glow {
+    0%,
+    100% {
+        opacity: 0.42;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes star-pulse {
+    0%,
+    100% {
+        transform: scale(0.96) rotate(-2deg);
+    }
+
+    50% {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+@keyframes float-symbol {
+    0%,
+    100% {
+        opacity: 0.32;
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: translateY(-11px) rotate(7deg);
+    }
+}
+
+@keyframes theme-pop {
+    from {
+        opacity: 0.35;
+        transform: scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gothic-bat-flutter {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-7deg) scale(0.94);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(8deg) scale(1.08);
+    }
+}
+
+@keyframes gothic-mist-drift {
+    0%,
+    100% {
+        opacity: 0.18;
+        transform: translateX(-7px);
+    }
+
+    50% {
+        opacity: 0.58;
+        transform: translateX(9px);
+    }
+}
+
+@keyframes bookish-page-flutter {
+    0%,
+    100% {
+        opacity: 0.48;
+        transform: translate(0, 0) rotate(-8deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(7px, -10px) rotate(12deg);
+    }
+}
+
+@keyframes birthday-balloon-bob {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(4deg);
+    }
+}
+
+@keyframes birthday-confetti-fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-14px) rotate(0deg);
+    }
+
+    18% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(38px) rotate(220deg);
+    }
+}
+
+@keyframes teacher-chalk-draw {
+    0%,
+    100% {
+        stroke-dashoffset: 80;
+        opacity: 0.3;
+    }
+
+    45%,
+    70% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes teacher-item-bounce {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(3deg);
+    }
+}
+
+@keyframes tree-dance {
+    0%,
+    100% {
+        transform: rotate(-2deg) translateY(0);
+    }
+
+    25% {
+        transform: rotate(2deg) translateY(-3px);
+    }
+
+    50% {
+        transform: rotate(-1deg) translateY(0);
+    }
+
+    75% {
+        transform: rotate(2.5deg) translateY(-4px);
+    }
+}
+
+@keyframes fourth-firework-burst {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    42% {
+        opacity: 0.95;
+        transform: scale(1);
+    }
+
+    70%,
+    100% {
+        opacity: 0;
+        transform: scale(1.18);
+    }
+}
+
+@keyframes fourth-firework-draw {
+    0% {
+        stroke-dashoffset: 30;
+    }
+
+    18%,
+    45% {
+        stroke-dashoffset: 0;
+    }
+
+    70%,
+    100% {
+        stroke-dashoffset: -30;
+    }
+}
+
+
+@keyframes classy-shimmer {
+    0%,
+    100% {
+        opacity: 0.78;
+        transform: scale(0.94);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes symbol-pulse {
+    0%,
+    100% {
+        opacity: 0.72;
+        transform: scale(0.92);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+@keyframes lantern-sway {
+    0%,
+    100% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(4deg);
+    }
+}
+
+@keyframes leaf-glow {
+    0%,
+    100% {
+        opacity: 0.76;
+        transform: scale(0.94) rotate(-3deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(4deg);
+    }
+}
+
+@keyframes leaf-fall {
+    0% {
+        opacity: 0;
+        transform: translate(0, -18px) rotate(0deg);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(18px, 55px) rotate(150deg);
+    }
+}
+
+@keyframes blossom-bloom {
+    0%,
+    100% {
+        opacity: 0.72;
+        transform: scale(0.68);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes bookish-bookmark-sway {
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes bookish-glint {
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (min-width: 700px) {
+    .tree-stage {
+        min-height: 435px;
+    }
+
+    .theme-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+    }
+}
+
+@media (max-width: 600px) {
+    .export-bar {
+        grid-template-columns: 1fr;
+        row-gap: 0.8rem;
+    }
+
+    .export-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .copy-status:not(:empty) {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 430px) {
+    .app-shell {
+        padding-inline: 0.7rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(3.8rem, 20vw, 5.4rem);
+    }
+
+    .tree-stage {
+        min-height: 365px;
+        padding-inline: 0.25rem;
+    }
+
+    #tree {
+        width: min(320px, 94%);
+    }
+
+    .theme-copy {
+        padding-inline: 1rem;
+    }
+
+    .export-bar {
+        margin-inline: 0.7rem;
+        padding: 0.85rem;
+    }
+
+    .export-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .dialog-actions .export-button {
+        flex: 1;
+    }
+
+    .svg-code-output {
+        height: 44vh;
+    }
+}
+
+/* =========================
+   Respect the user's motion preference.
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}

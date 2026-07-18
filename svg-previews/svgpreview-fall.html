@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fall Tree Preview - Background and No Background</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            /*
+            * PREVIEW BOX SIZE
+            * Increase 760px to allow a larger box on desktop.
+            * Decrease 760px to keep the preview smaller everywhere.
+            */
+            --preview-max-width: 760px;
+
+            /*
+            * TREE SIZE INSIDE THE BOX
+            * Increase 84% to make the tree larger inside the box.
+            * Decrease 84% to add more space around the tree.
+            */
+            --tree-width: 84%;
+
+            /*
+            * MAXIMUM TREE SIZE
+            * This prevents the tree from becoming too large on wide screens.
+            */
+            --tree-max-width: 650px;
+        }
+
+        h1 {
+            margin: 0 0 1rem;
+            color: #000000;
+            font-family: Georgia, "Times New Roman", serif;
+
+            /* Responsive font size */
+            font-size: clamp(2rem, 6vw, 4.5rem);
+
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            text-wrap: balance;
+
+            /* Soft depth without looking too heavy */
+            text-shadow: 0 3px 12px rgba(15, 70, 54, 0.14);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1::after {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            margin: 0;
+
+            /*
+            * Responsive page spacing:
+            * 0.75rem on small screens and up to 2rem on large screens.
+            */
+            padding: clamp(0.75rem, 3vw, 2rem);
+
+            background: #f3f4f6;
+        }
+
+        .tree-box {
+            display: grid;
+            place-items: center;
+            width: min(
+                92vw,
+                var(--preview-max-width),
+                calc(88svh * 16 / 21)
+            );
+            aspect-ratio: 16 / 21;
+            overflow: hidden;
+            border: 1px solid #d7dce3;
+            border-radius: clamp(16px, 3vw, 32px);
+
+            /* Background shown by default */
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(255, 255, 255, 0.08),
+                    transparent 25rem
+                ),
+                linear-gradient(145deg, #32170d, #9b4d23);
+
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+        }
+
+        /*
+        * TRANSPARENT BACKGROUND OPTION
+        *
+        * Add "no-background" to the tree-box class in the HTML
+        * to remove the green background, border, and shadow.
+        */
+        .tree-box.no-background {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .tree-box #tree {
+            display: block;
+
+            /*
+            * Adjust --tree-width at the top of this CSS to resize the tree.
+            * Example:
+            * --tree-width: 92%; makes it larger.
+            * --tree-width: 72%; makes it smaller.
+            */
+            width: min(var(--tree-width), var(--tree-max-width));
+
+            /*
+            * Prevents the SVG from becoming taller than the preview box.
+            */
+            max-height: 92%;
+            height: auto;
+        }
+
+        /*
+        * Small-phone adjustments.
+        * The box uses more of the available width, while the tree remains contained.
+        */
+        @media (max-width: 480px) {
+            :root {
+                --tree-width: 88%;
+            }
+
+            .tree-box {
+                width: min(
+                    94vw,
+                    var(--preview-max-width),
+                    calc(86svh * 16 / 21)
+                );
+
+                border-radius: 18px;
+            }
+        }
+
+        /*
+        * Landscape-phone adjustment.
+        * This prevents the tall box from extending below the screen.
+        */
+        @media (max-height: 520px) and (orientation: landscape) {
+            .tree-box {
+                width: min(
+                    74vw,
+                    var(--preview-max-width),
+                    calc(82svh * 16 / 21)
+                );
+            }
+
+            .tree-box #tree {
+                max-height: 88%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fall Tree Preview - Background and No Background</h1>
+
+    <!-- 1. TREE WITH BACKGROUND -->
+<main class="tree-box" aria-label="Fall animated tree preview">
+<!-- Autumn Glow -->
+<svg id="tree" viewBox="0 0 320 420" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Autumn Glow" width="320" height="420" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                    <title id="treeTitle" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">Autumn Glow</title>
+                    <desc id="treeDescription" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">A warm deciduous tree with changing leaves that drift gently toward the ground.</desc>
+
+                    <defs style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                        <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <feGaussianBlur stdDeviation="4" result="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <feMerge style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <feMergeNode in="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <feMergeNode in="SourceGraphic" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </feMerge>
+                        </filter>
+
+                        <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <feGaussianBlur stdDeviation="7" result="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <feMerge style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <feMergeNode in="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <feMergeNode in="SourceGraphic" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </feMerge>
+                        </filter>
+
+                        <linearGradient id="trunkGradient" x1="0" y1="0" x2="1" y2="0" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <stop offset="0%" style="stop-color: rgb(143, 90, 54); display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <stop offset="100%" style="stop-color: rgb(81, 49, 31); display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </linearGradient>
+
+                        <!-- Reusable Eid crescent-and-star mark. -->
+                        <g id="eidMoonStarMark" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <!-- Mask creates a clean crescent without showing a dark cutout circle. -->
+                            <mask id="eidMoonMask" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <rect x="-60" y="-60" width="120" height="120" fill="black" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <circle cx="0" cy="0" r="40" fill="white" style="display: inline; visibility: visible; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <circle cx="18" cy="-5" r="33" fill="black" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </mask>
+
+                            <!-- Gold crescent fill. -->
+                            <circle class="eid-moon-fill" cx="0" cy="0" r="40" mask="url(#eidMoonMask)" style="display: inline; visibility: visible; fill: rgb(244, 203, 99); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(244, 203, 99, 0.72) 0px 0px 5px) drop-shadow(rgba(0, 0, 0, 0.12) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <!-- Five-point star with a clean border. -->
+                            <polygon class="eid-moon-star-outer" points="&#10;                                    29,-23&#10;                                    33,-13&#10;                                    44,-14&#10;                                    37,-5&#10;                                    44,4&#10;                                    33,2&#10;                                    29,13&#10;                                    25,2&#10;                                    14,4&#10;                                    21,-5&#10;                                    14,-14&#10;                                    25,-13&#10;                                " style="display: inline; visibility: visible; fill: rgb(255, 240, 173); fill-opacity: 1; stroke: rgba(255, 240, 173, 0.96); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(255, 230, 145, 0.72) 0px 0px 4px) drop-shadow(rgba(0, 0, 0, 0.14) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <polygon class="eid-moon-star-inner" points="&#10;                                    29,-17&#10;                                    31.7,-10.3&#10;                                    39,-10.8&#10;                                    34.2,-5.2&#10;                                    39,0.5&#10;                                    31.7,-0.6&#10;                                    29,7&#10;                                    26.3,-0.6&#10;                                    19,0.5&#10;                                    23.8,-5.2&#10;                                    19,-10.8&#10;                                    26.3,-10.3&#10;                                " style="display: inline; visibility: visible; fill: rgba(5, 48, 38, 0.98); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+
+                        <g id="seasonLeaf" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <path class="leaf-shape" d="M0,-13 L3,-7 L8,-10 L7,-4 L13,-2 L8,2 L11,7 L4,5 L3,13 L0,8 L-3,13 L-4,5 L-11,7 L-8,2 L-13,-2 L-7,-4 L-8,-10 L-3,-7 Z" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="leaf-vein" d="M0,-10 V10 M0,-1 L-6,-5 M0,1 L6,-4 M0,4 L-5,7 M0,4 L5,7" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgba(83, 39, 20, 0.48); stroke-width: 0.85px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <g id="springBlossom" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <circle cx="0" cy="-7" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="6.5" cy="-2" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="4" cy="6" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="-4" cy="6" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="-6.5" cy="-2" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="blossom-center" cx="0" cy="0" r="3.6" style="display: inline; visibility: visible; fill: rgb(245, 189, 85); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+                    <radialGradient id="portableSpotlightGradient" cx="50%" cy="45%" r="55%">
+<stop offset="0%" stop-color="#f2b34c" stop-opacity="0.32"/>
+<stop offset="58%" stop-color="#f2b34c" stop-opacity="0.12"/>
+<stop offset="100%" stop-color="#f2b34c" stop-opacity="0"/>
+</radialGradient>
+<filter id="portableSpotlightBlur" x="-35%" y="-35%" width="170%" height="170%">
+<feGaussianBlur stdDeviation="14"/>
+</filter>
+<style>
+                .portable-spotlight {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSpotlightPulse 4.8s ease-in-out infinite;
+                }
+
+                .portable-floating-icon {
+                    fill: #f2b34c;
+                    font-family: "Segoe UI Symbol", "Segoe UI Emoji", sans-serif;
+                    font-size: 19px;
+                    font-weight: 700;
+                    text-anchor: middle;
+                    dominant-baseline: middle;
+                    opacity: 0.5;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFloat 5s ease-in-out infinite;
+                }
+
+                .portable-icon-two { animation-delay: -1.5s; }
+                .portable-icon-three { animation-delay: -3s; }
+                .portable-icon-four { animation-delay: -4s; }
+                .portable-icon-five { animation-delay: -2.2s; }
+
+                .bulb,
+                .eid-light,
+                .eid-mark-spark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTwinkle 1.6s ease-in-out infinite;
+                }
+
+                .eid-sparkle {
+                    animation: portableEidSparkle 1.6s ease-in-out infinite;
+                }
+
+                .delay-2,
+                .eid-delay-two { animation-delay: 0.45s; }
+
+                .delay-3,
+                .eid-delay-three { animation-delay: 0.9s; }
+
+                .star {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTopperPulse 2.5s ease-in-out infinite;
+                }
+
+                .classy-bauble {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableShimmer 2.8s ease-in-out infinite;
+                }
+
+                .shimmer-two { animation-delay: -0.9s; }
+                .shimmer-three { animation-delay: -1.8s; }
+
+                .Judaism-symbol,
+                .Islam-crescent,
+                .Islam-star,
+                .eid-moon-star-mark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSymbolPulse 2.8s ease-in-out infinite;
+                }
+
+                .symbol-delay-two { animation-delay: -0.9s; }
+                .symbol-delay-three { animation-delay: -1.8s; }
+
+                .Islam-lantern {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableLanternSway 3.2s ease-in-out infinite;
+                }
+
+                .lantern-delay-two { animation-delay: -1.6s; }
+                .lantern-delay-three { animation-delay: -0.7s; }
+                .pearl-two { animation-delay: -1.4s; }
+
+                .fall-leaf {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableLeafGlow 3.2s ease-in-out infinite;
+                }
+
+                .leaf-delay-two { animation-delay: -1s; }
+                .leaf-delay-three { animation-delay: -2s; }
+
+                .falling-leaf {
+                    animation: portableLeafFall 4.6s ease-in-out infinite;
+                }
+
+                .falling-two { animation-delay: -2.3s; }
+                .falling-three { animation-delay: -1.15s; }
+
+                .spring-blossom,
+                .spring-topper-blossom {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableBloom 2.8s ease-in-out infinite;
+                }
+
+                .bloom-two { animation-delay: -0.9s; }
+                .bloom-three { animation-delay: -1.8s; }
+
+                .gothic-bat {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableGothicFlutter 2.4s ease-in-out infinite;
+                }
+
+                .gothic-mist-line {
+                    animation: portableGothicMist 4.8s ease-in-out infinite;
+                }
+
+                .gothic-mist-two { animation-delay: -2.4s; }
+
+                .bookish-page {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portablePageFlutter 3.1s ease-in-out infinite;
+                }
+
+                .bookish-page-two { animation-delay: -1s; }
+                .bookish-page-three { animation-delay: -2s; }
+
+                .book-stack-bookmark {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableBookBookmarkSway 2.8s ease-in-out infinite;
+                }
+
+                .book-stack-glint {
+                    animation: portableBookGlint 2.4s ease-in-out infinite;
+                }
+
+                .glint-two { animation-delay: -1.2s; }
+
+                .birthday-balloon {
+                    transform-box: fill-box;
+                    transform-origin: center bottom;
+                    animation: portableBalloonBob 3s ease-in-out infinite;
+                }
+
+                .birthday-balloon-two { animation-delay: -1.5s; }
+
+                .birthday-confetti {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableConfettiFall 3.3s linear infinite;
+                }
+
+                .confetti-two { animation-delay: -0.8s; }
+                .confetti-three { animation-delay: -1.6s; }
+                .confetti-four { animation-delay: -2.4s; }
+
+                .teacher-chalk-line {
+                    animation: portableChalkDraw 3.4s ease-in-out infinite;
+                }
+
+                .teacher-chalk-two { animation-delay: -1.7s; }
+
+                .teacher-item {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTeacherBounce 3s ease-in-out infinite;
+                }
+
+                .teacher-item-two { animation-delay: -0.7s; }
+                .teacher-item-three { animation-delay: -1.4s; }
+                .teacher-item-four { animation-delay: -2.1s; }
+
+                .firework {
+                    opacity: 0;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFireworkBurst 3.2s ease-out infinite;
+                }
+
+                .firework path {
+                    stroke-dasharray: 30;
+                    stroke-dashoffset: 30;
+                    animation: portableFireworkDraw 3.2s ease-out infinite;
+                }
+
+                .firework-one,
+                .firework-one path { animation-delay: -0.4s; }
+                .firework-two,
+                .firework-two path { animation-delay: -1.5s; }
+                .firework-three,
+                .firework-three path { animation-delay: -2.5s; }
+
+                
+
+                @keyframes portableTwinkle {
+                    0%, 100% { opacity: 0.72; transform: scale(0.9); }
+                    50% { opacity: 1; transform: scale(1.16); }
+                }
+
+                @keyframes portableEidSparkle {
+                    0%, 100% { opacity: 0.42; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableTopperPulse {
+                    0%, 100% { transform: scale(0.96) rotate(-2deg); }
+                    50% { transform: scale(1.05) rotate(2deg); }
+                }
+
+                @keyframes portableFloat {
+                    0%, 100% { opacity: 0.32; transform: translateY(0) rotate(-5deg); }
+                    50% { opacity: 0.72; transform: translateY(-11px) rotate(7deg); }
+                }
+
+                @keyframes portableSpotlightPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.96); }
+                    50% { opacity: 1; transform: scale(1.04); }
+                }
+
+                @keyframes portableShimmer {
+                    0%, 100% { opacity: 0.78; transform: scale(0.94); }
+                    50% { opacity: 1; transform: scale(1.1); }
+                }
+
+                @keyframes portableSymbolPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.92); }
+                    50% { opacity: 1; transform: scale(1.12); }
+                }
+
+                @keyframes portableLanternSway {
+                    0%, 100% { transform: rotate(-4deg); }
+                    50% { transform: rotate(4deg); }
+                }
+
+                @keyframes portableLeafGlow {
+                    0%, 100% { opacity: 0.76; transform: scale(0.94) rotate(-3deg); }
+                    50% { opacity: 1; transform: scale(1.1) rotate(4deg); }
+                }
+
+                @keyframes portableLeafFall {
+                    0% { opacity: 0; transform: translate(0, -18px) rotate(0deg); }
+                    20% { opacity: 1; }
+                    100% { opacity: 0; transform: translate(18px, 55px) rotate(150deg); }
+                }
+
+                @keyframes portableBloom {
+                    0%, 100% { opacity: 0.72; transform: scale(0.68); }
+                    50% { opacity: 1; transform: scale(1.08); }
+                }
+
+                @keyframes portableGothicFlutter {
+                    0%, 100% { transform: translateY(0) rotate(-7deg) scale(0.94); }
+                    50% { transform: translateY(-8px) rotate(8deg) scale(1.08); }
+                }
+
+                @keyframes portableGothicMist {
+                    0%, 100% { opacity: 0.18; transform: translateX(-7px); }
+                    50% { opacity: 0.58; transform: translateX(9px); }
+                }
+
+                @keyframes portablePageFlutter {
+                    0%, 100% { opacity: 0.48; transform: translate(0, 0) rotate(-8deg); }
+                    50% { opacity: 1; transform: translate(7px, -10px) rotate(12deg); }
+                }
+
+                @keyframes portableBookBookmarkSway {
+                    0%, 100% { transform: rotate(-3deg); }
+                    50% { transform: rotate(3deg); }
+                }
+
+                @keyframes portableBookGlint {
+                    0%, 100% { opacity: 0.25; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableBalloonBob {
+                    0%, 100% { transform: translateY(0) rotate(-3deg); }
+                    50% { transform: translateY(-10px) rotate(4deg); }
+                }
+
+                @keyframes portableConfettiFall {
+                    0% { opacity: 0; transform: translateY(-14px) rotate(0deg); }
+                    18% { opacity: 1; }
+                    100% { opacity: 0; transform: translateY(38px) rotate(220deg); }
+                }
+
+                @keyframes portableChalkDraw {
+                    0%, 100% { stroke-dashoffset: 80; opacity: 0.3; }
+                    45%, 70% { stroke-dashoffset: 0; opacity: 1; }
+                }
+
+                @keyframes portableTeacherBounce {
+                    0%, 100% { transform: translateY(0) rotate(-2deg); }
+                    50% { transform: translateY(-5px) rotate(3deg); }
+                }
+
+                @keyframes portableTreeDance {
+                    0%, 100% { transform: rotate(-2deg) translateY(0); }
+                    25% { transform: rotate(2deg) translateY(-3px); }
+                    50% { transform: rotate(-1deg) translateY(0); }
+                    75% { transform: rotate(2.5deg) translateY(-4px); }
+                }
+
+                @keyframes portableFireworkBurst {
+                    0% { opacity: 0; transform: scale(0.2); }
+                    12% { opacity: 1; }
+                    42% { opacity: 0.95; transform: scale(1); }
+                    70%, 100% { opacity: 0; transform: scale(1.18); }
+                }
+
+                @keyframes portableFireworkDraw {
+                    0% { stroke-dashoffset: 30; }
+                    18%, 45% { stroke-dashoffset: 0; }
+                    70%, 100% { stroke-dashoffset: -30; }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    * { animation: none !important; }
+                }
+            </style>
+</defs>
+
+                    <g class="portable-scene-layer" aria-hidden="true">
+<ellipse class="portable-spotlight" cx="160" cy="190" rx="122" ry="151" fill="url(#portableSpotlightGradient)" filter="url(#portableSpotlightBlur)"/>
+<text class="portable-floating-icon portable-icon-two" x="282" y="151">🍁</text>
+<text class="portable-floating-icon portable-icon-three" x="39" y="286">🍁</text>
+<text class="portable-floating-icon portable-icon-four" x="281" y="312">•</text>
+<text class="portable-floating-icon portable-icon-five" x="55" y="92">·</text>
+</g>
+<g id="treeArtwork" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                        <!-- Default evergreen used by most themes. -->
+                        
+
+                        <!-- Easter: rounded egg-shaped spring topiary. -->
+                        
+
+                        <!-- 4th of July: navy tree with patriotic decorations and fireworks. -->
+                        
+
+                        <!-- Scottish: asymmetrical windswept Highland pine. -->
+                        
+
+
+                        <!-- Shared deciduous tree used by Fall and Spring. -->
+                        <g class="tree-form tree-form-deciduous" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(0, 0, 0, 0.18) 0px 12px 13px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <ellipse class="ground-shadow" cx="160" cy="383" rx="96" ry="15" style="display: inline; visibility: visible; fill: rgba(0, 0, 0, 0.2); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: blur(5px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <path class="season-trunk" d="M142 378 C143 345 147 309 153 275 L167 275 C174 315 178 348 177 378 Z" style="display: inline; visibility: visible; fill: url(&quot;#trunkGradient&quot;); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <path class="season-branch" d="M159 301 C145 267 128 238 105 211" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M162 295 C180 260 201 234 226 213" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M157 270 C147 230 145 194 151 158" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M164 271 C174 232 177 197 171 162" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <g class="season-canopy" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <ellipse cx="160" cy="132" rx="57" ry="54" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="109" cy="180" rx="61" ry="58" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="211" cy="180" rx="61" ry="58" style="display: inline; visibility: visible; fill: rgb(227, 168, 63); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="86" cy="244" rx="56" ry="54" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="160" cy="232" rx="83" ry="72" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="234" cy="244" rx="56" ry="54" style="display: inline; visibility: visible; fill: rgb(227, 168, 63); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="129" cy="292" rx="68" ry="47" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="194" cy="292" rx="68" ry="47" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </g>
+
+                            <ellipse class="season-canopy-highlight" cx="126" cy="184" rx="38" ry="50" style="display: inline; visibility: visible; fill: rgba(255, 222, 155, 0.12); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <!-- Shared lights. -->
+                        <g id="lights" filter="url(#softGlow)" style="display: none; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: url(&quot;#softGlow&quot;); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <circle class="bulb bulb-one delay-1" cx="141" cy="127" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-2" cx="180" cy="143" r="7" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-3" cx="120" cy="183" r="8" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-1" cx="164" cy="193" r="7" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-3" cx="209" cy="190" r="8" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-1" cx="92" cy="246" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-2" cx="137" cy="247" r="7" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-3" cx="184" cy="256" r="8" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-2" cx="228" cy="247" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-3" cx="70" cy="310" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-1" cx="118" cy="304" r="7" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-2" cx="163" cy="320" r="8" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-1" cx="207" cy="305" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-3" cx="251" cy="309" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <!-- Default ornaments. -->
+                        
+
+                        <!-- Emoji ornament themes. -->
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <!-- Gothic ornaments with drifting mist and fluttering bats. -->
+                        
+
+                        <!-- Bookish ornaments with softly fluttering paper pages. -->
+                        
+
+                        <!-- Birthday ornaments with bobbing balloons and falling confetti. -->
+                        
+
+                        <!-- Teacher ornaments with chalkboard-style doodles. -->
+                        
+
+
+                        <!-- Elegant gold-and-ivory Christmas ornaments. -->
+                        
+
+                        <!-- Blue-and-silver Festival of Lights ornaments. -->
+                        
+
+                        <!-- Elegant emerald-and-gold Eid ornaments. -->
+                        
+
+                        <!-- Autumn maple leaves that drift and change color. -->
+                        <g class="theme-decor decor-fall" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <g transform="translate(118 130) rotate(-18) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(155 112) rotate(12) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(193 132) rotate(28) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(83 178) rotate(-35) scale(0.8)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-amber leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(239, 141, 50); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(124 179) rotate(20) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(167 166) rotate(-8) scale(0.95)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(215 185) rotate(33) scale(0.8)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(72 230) rotate(-28) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(112 232) rotate(15) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(158 222) rotate(-12) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(204 230) rotate(20) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-amber leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(239, 141, 50); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(244 241) rotate(34) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(103 278) rotate(-18) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(150 275) rotate(8) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(198 280) rotate(22) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(231 295) rotate(32) scale(0.7)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(55 300)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-one leaf-red" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.0209781; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(260 305)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-two leaf-gold" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.846583; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(88 325)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-three leaf-orange" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.946858; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                        </g>
+
+                        <!-- Multicolored spring blossoms that open gently. -->
+                        
+
+                        <!-- Easter egg ornaments drawn as SVG shapes. -->
+                        
+
+                        <!-- Fourth decorations are integrated into its silhouette. -->
+                        
+
+                        <!-- Scottish ornaments use thistles and silver baubles. -->
+                        
+
+
+                        <!-- Elegant crystal topper. -->
+                        
+
+                        <!-- Star of David topper. -->
+                        
+
+                        <!-- Gold crescent with a star inside the opening. -->
+                        
+
+                        <!-- Autumn leaf topper. -->
+                        <g class="topper-variant topper-fall" filter="url(#bigGlow)" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: url(&quot;#bigGlow&quot;); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <g transform="translate(151 48) rotate(-28)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-red" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(169 47) rotate(26)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-gold" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(160 31)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-orange" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                        </g>
+
+                        <!-- Multicolored spring blossom topper. -->
+                        
+
+                        <!-- Gothic moon-and-bat topper. -->
+                        
+
+                        <!-- Stack-of-books topper. -->
+                        
+
+                        <!-- Birthday party-hat topper. -->
+                        
+
+                        <!-- Teacher apple topper. -->
+                        
+
+                        <!-- Default star topper. -->
+                        
+
+                        <!-- Easter flower topper. -->
+                        
+
+                        <!-- Scottish thistle topper. -->
+                        
+                    </g>
+                </svg>
+    </main>
+
+    <!-- 2. TREE WITH NO BACKGROUND -->
+<main class="tree-box no-background" aria-label="Fall animated tree preview">
+<!-- Autumn Glow -->
+<svg id="tree" viewBox="0 0 320 420" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Autumn Glow" width="320" height="420" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                    <title id="treeTitle" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">Autumn Glow</title>
+                    <desc id="treeDescription" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">A warm deciduous tree with changing leaves that drift gently toward the ground.</desc>
+
+                    <defs style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                        <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <feGaussianBlur stdDeviation="4" result="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <feMerge style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <feMergeNode in="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <feMergeNode in="SourceGraphic" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </feMerge>
+                        </filter>
+
+                        <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <feGaussianBlur stdDeviation="7" result="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <feMerge style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <feMergeNode in="blur" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <feMergeNode in="SourceGraphic" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </feMerge>
+                        </filter>
+
+                        <linearGradient id="trunkGradient" x1="0" y1="0" x2="1" y2="0" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <stop offset="0%" style="stop-color: rgb(143, 90, 54); display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <stop offset="100%" style="stop-color: rgb(81, 49, 31); display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </linearGradient>
+
+                        <!-- Reusable Eid crescent-and-star mark. -->
+                        <g id="eidMoonStarMark" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <!-- Mask creates a clean crescent without showing a dark cutout circle. -->
+                            <mask id="eidMoonMask" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <rect x="-60" y="-60" width="120" height="120" fill="black" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <circle cx="0" cy="0" r="40" fill="white" style="display: inline; visibility: visible; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <circle cx="18" cy="-5" r="33" fill="black" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </mask>
+
+                            <!-- Gold crescent fill. -->
+                            <circle class="eid-moon-fill" cx="0" cy="0" r="40" mask="url(#eidMoonMask)" style="display: inline; visibility: visible; fill: rgb(244, 203, 99); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(244, 203, 99, 0.72) 0px 0px 5px) drop-shadow(rgba(0, 0, 0, 0.12) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <!-- Five-point star with a clean border. -->
+                            <polygon class="eid-moon-star-outer" points="&#10;                                    29,-23&#10;                                    33,-13&#10;                                    44,-14&#10;                                    37,-5&#10;                                    44,4&#10;                                    33,2&#10;                                    29,13&#10;                                    25,2&#10;                                    14,4&#10;                                    21,-5&#10;                                    14,-14&#10;                                    25,-13&#10;                                " style="display: inline; visibility: visible; fill: rgb(255, 240, 173); fill-opacity: 1; stroke: rgba(255, 240, 173, 0.96); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(255, 230, 145, 0.72) 0px 0px 4px) drop-shadow(rgba(0, 0, 0, 0.14) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <polygon class="eid-moon-star-inner" points="&#10;                                    29,-17&#10;                                    31.7,-10.3&#10;                                    39,-10.8&#10;                                    34.2,-5.2&#10;                                    39,0.5&#10;                                    31.7,-0.6&#10;                                    29,7&#10;                                    26.3,-0.6&#10;                                    19,0.5&#10;                                    23.8,-5.2&#10;                                    19,-10.8&#10;                                    26.3,-10.3&#10;                                " style="display: inline; visibility: visible; fill: rgba(5, 48, 38, 0.98); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+
+                        <g id="seasonLeaf" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <path class="leaf-shape" d="M0,-13 L3,-7 L8,-10 L7,-4 L13,-2 L8,2 L11,7 L4,5 L3,13 L0,8 L-3,13 L-4,5 L-11,7 L-8,2 L-13,-2 L-7,-4 L-8,-10 L-3,-7 Z" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="leaf-vein" d="M0,-10 V10 M0,-1 L-6,-5 M0,1 L6,-4 M0,4 L-5,7 M0,4 L5,7" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgba(83, 39, 20, 0.48); stroke-width: 0.85px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <g id="springBlossom" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <circle cx="0" cy="-7" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="6.5" cy="-2" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="4" cy="6" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="-4" cy="6" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle cx="-6.5" cy="-2" r="5" style="display: inline; visibility: visible; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="blossom-center" cx="0" cy="0" r="3.6" style="display: inline; visibility: visible; fill: rgb(245, 189, 85); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+                    <radialGradient id="portableSpotlightGradient" cx="50%" cy="45%" r="55%">
+<stop offset="0%" stop-color="#f2b34c" stop-opacity="0.32"/>
+<stop offset="58%" stop-color="#f2b34c" stop-opacity="0.12"/>
+<stop offset="100%" stop-color="#f2b34c" stop-opacity="0"/>
+</radialGradient>
+<filter id="portableSpotlightBlur" x="-35%" y="-35%" width="170%" height="170%">
+<feGaussianBlur stdDeviation="14"/>
+</filter>
+<style>
+                .portable-spotlight {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSpotlightPulse 4.8s ease-in-out infinite;
+                }
+
+                .portable-floating-icon {
+                    fill: #f2b34c;
+                    font-family: "Segoe UI Symbol", "Segoe UI Emoji", sans-serif;
+                    font-size: 19px;
+                    font-weight: 700;
+                    text-anchor: middle;
+                    dominant-baseline: middle;
+                    opacity: 0.5;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFloat 5s ease-in-out infinite;
+                }
+
+                .portable-icon-two { animation-delay: -1.5s; }
+                .portable-icon-three { animation-delay: -3s; }
+                .portable-icon-four { animation-delay: -4s; }
+                .portable-icon-five { animation-delay: -2.2s; }
+
+                .bulb,
+                .eid-light,
+                .eid-mark-spark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTwinkle 1.6s ease-in-out infinite;
+                }
+
+                .eid-sparkle {
+                    animation: portableEidSparkle 1.6s ease-in-out infinite;
+                }
+
+                .delay-2,
+                .eid-delay-two { animation-delay: 0.45s; }
+
+                .delay-3,
+                .eid-delay-three { animation-delay: 0.9s; }
+
+                .star {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTopperPulse 2.5s ease-in-out infinite;
+                }
+
+                .classy-bauble {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableShimmer 2.8s ease-in-out infinite;
+                }
+
+                .shimmer-two { animation-delay: -0.9s; }
+                .shimmer-three { animation-delay: -1.8s; }
+
+                .Judaism-symbol,
+                .Islam-crescent,
+                .Islam-star,
+                .eid-moon-star-mark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSymbolPulse 2.8s ease-in-out infinite;
+                }
+
+                .symbol-delay-two { animation-delay: -0.9s; }
+                .symbol-delay-three { animation-delay: -1.8s; }
+
+                .Islam-lantern {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableLanternSway 3.2s ease-in-out infinite;
+                }
+
+                .lantern-delay-two { animation-delay: -1.6s; }
+                .lantern-delay-three { animation-delay: -0.7s; }
+                .pearl-two { animation-delay: -1.4s; }
+
+                .fall-leaf {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableLeafGlow 3.2s ease-in-out infinite;
+                }
+
+                .leaf-delay-two { animation-delay: -1s; }
+                .leaf-delay-three { animation-delay: -2s; }
+
+                .falling-leaf {
+                    animation: portableLeafFall 4.6s ease-in-out infinite;
+                }
+
+                .falling-two { animation-delay: -2.3s; }
+                .falling-three { animation-delay: -1.15s; }
+
+                .spring-blossom,
+                .spring-topper-blossom {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableBloom 2.8s ease-in-out infinite;
+                }
+
+                .bloom-two { animation-delay: -0.9s; }
+                .bloom-three { animation-delay: -1.8s; }
+
+                .gothic-bat {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableGothicFlutter 2.4s ease-in-out infinite;
+                }
+
+                .gothic-mist-line {
+                    animation: portableGothicMist 4.8s ease-in-out infinite;
+                }
+
+                .gothic-mist-two { animation-delay: -2.4s; }
+
+                .bookish-page {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portablePageFlutter 3.1s ease-in-out infinite;
+                }
+
+                .bookish-page-two { animation-delay: -1s; }
+                .bookish-page-three { animation-delay: -2s; }
+
+                .book-stack-bookmark {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableBookBookmarkSway 2.8s ease-in-out infinite;
+                }
+
+                .book-stack-glint {
+                    animation: portableBookGlint 2.4s ease-in-out infinite;
+                }
+
+                .glint-two { animation-delay: -1.2s; }
+
+                .birthday-balloon {
+                    transform-box: fill-box;
+                    transform-origin: center bottom;
+                    animation: portableBalloonBob 3s ease-in-out infinite;
+                }
+
+                .birthday-balloon-two { animation-delay: -1.5s; }
+
+                .birthday-confetti {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableConfettiFall 3.3s linear infinite;
+                }
+
+                .confetti-two { animation-delay: -0.8s; }
+                .confetti-three { animation-delay: -1.6s; }
+                .confetti-four { animation-delay: -2.4s; }
+
+                .teacher-chalk-line {
+                    animation: portableChalkDraw 3.4s ease-in-out infinite;
+                }
+
+                .teacher-chalk-two { animation-delay: -1.7s; }
+
+                .teacher-item {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTeacherBounce 3s ease-in-out infinite;
+                }
+
+                .teacher-item-two { animation-delay: -0.7s; }
+                .teacher-item-three { animation-delay: -1.4s; }
+                .teacher-item-four { animation-delay: -2.1s; }
+
+                .firework {
+                    opacity: 0;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFireworkBurst 3.2s ease-out infinite;
+                }
+
+                .firework path {
+                    stroke-dasharray: 30;
+                    stroke-dashoffset: 30;
+                    animation: portableFireworkDraw 3.2s ease-out infinite;
+                }
+
+                .firework-one,
+                .firework-one path { animation-delay: -0.4s; }
+                .firework-two,
+                .firework-two path { animation-delay: -1.5s; }
+                .firework-three,
+                .firework-three path { animation-delay: -2.5s; }
+
+                
+
+                @keyframes portableTwinkle {
+                    0%, 100% { opacity: 0.72; transform: scale(0.9); }
+                    50% { opacity: 1; transform: scale(1.16); }
+                }
+
+                @keyframes portableEidSparkle {
+                    0%, 100% { opacity: 0.42; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableTopperPulse {
+                    0%, 100% { transform: scale(0.96) rotate(-2deg); }
+                    50% { transform: scale(1.05) rotate(2deg); }
+                }
+
+                @keyframes portableFloat {
+                    0%, 100% { opacity: 0.32; transform: translateY(0) rotate(-5deg); }
+                    50% { opacity: 0.72; transform: translateY(-11px) rotate(7deg); }
+                }
+
+                @keyframes portableSpotlightPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.96); }
+                    50% { opacity: 1; transform: scale(1.04); }
+                }
+
+                @keyframes portableShimmer {
+                    0%, 100% { opacity: 0.78; transform: scale(0.94); }
+                    50% { opacity: 1; transform: scale(1.1); }
+                }
+
+                @keyframes portableSymbolPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.92); }
+                    50% { opacity: 1; transform: scale(1.12); }
+                }
+
+                @keyframes portableLanternSway {
+                    0%, 100% { transform: rotate(-4deg); }
+                    50% { transform: rotate(4deg); }
+                }
+
+                @keyframes portableLeafGlow {
+                    0%, 100% { opacity: 0.76; transform: scale(0.94) rotate(-3deg); }
+                    50% { opacity: 1; transform: scale(1.1) rotate(4deg); }
+                }
+
+                @keyframes portableLeafFall {
+                    0% { opacity: 0; transform: translate(0, -18px) rotate(0deg); }
+                    20% { opacity: 1; }
+                    100% { opacity: 0; transform: translate(18px, 55px) rotate(150deg); }
+                }
+
+                @keyframes portableBloom {
+                    0%, 100% { opacity: 0.72; transform: scale(0.68); }
+                    50% { opacity: 1; transform: scale(1.08); }
+                }
+
+                @keyframes portableGothicFlutter {
+                    0%, 100% { transform: translateY(0) rotate(-7deg) scale(0.94); }
+                    50% { transform: translateY(-8px) rotate(8deg) scale(1.08); }
+                }
+
+                @keyframes portableGothicMist {
+                    0%, 100% { opacity: 0.18; transform: translateX(-7px); }
+                    50% { opacity: 0.58; transform: translateX(9px); }
+                }
+
+                @keyframes portablePageFlutter {
+                    0%, 100% { opacity: 0.48; transform: translate(0, 0) rotate(-8deg); }
+                    50% { opacity: 1; transform: translate(7px, -10px) rotate(12deg); }
+                }
+
+                @keyframes portableBookBookmarkSway {
+                    0%, 100% { transform: rotate(-3deg); }
+                    50% { transform: rotate(3deg); }
+                }
+
+                @keyframes portableBookGlint {
+                    0%, 100% { opacity: 0.25; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableBalloonBob {
+                    0%, 100% { transform: translateY(0) rotate(-3deg); }
+                    50% { transform: translateY(-10px) rotate(4deg); }
+                }
+
+                @keyframes portableConfettiFall {
+                    0% { opacity: 0; transform: translateY(-14px) rotate(0deg); }
+                    18% { opacity: 1; }
+                    100% { opacity: 0; transform: translateY(38px) rotate(220deg); }
+                }
+
+                @keyframes portableChalkDraw {
+                    0%, 100% { stroke-dashoffset: 80; opacity: 0.3; }
+                    45%, 70% { stroke-dashoffset: 0; opacity: 1; }
+                }
+
+                @keyframes portableTeacherBounce {
+                    0%, 100% { transform: translateY(0) rotate(-2deg); }
+                    50% { transform: translateY(-5px) rotate(3deg); }
+                }
+
+                @keyframes portableTreeDance {
+                    0%, 100% { transform: rotate(-2deg) translateY(0); }
+                    25% { transform: rotate(2deg) translateY(-3px); }
+                    50% { transform: rotate(-1deg) translateY(0); }
+                    75% { transform: rotate(2.5deg) translateY(-4px); }
+                }
+
+                @keyframes portableFireworkBurst {
+                    0% { opacity: 0; transform: scale(0.2); }
+                    12% { opacity: 1; }
+                    42% { opacity: 0.95; transform: scale(1); }
+                    70%, 100% { opacity: 0; transform: scale(1.18); }
+                }
+
+                @keyframes portableFireworkDraw {
+                    0% { stroke-dashoffset: 30; }
+                    18%, 45% { stroke-dashoffset: 0; }
+                    70%, 100% { stroke-dashoffset: -30; }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    * { animation: none !important; }
+                }
+            </style>
+</defs>
+
+                    <g class="portable-scene-layer" aria-hidden="true">
+<ellipse class="portable-spotlight" cx="160" cy="190" rx="122" ry="151" fill="url(#portableSpotlightGradient)" filter="url(#portableSpotlightBlur)"/>
+<text class="portable-floating-icon portable-icon-two" x="282" y="151">🍁</text>
+<text class="portable-floating-icon portable-icon-three" x="39" y="286">🍁</text>
+<text class="portable-floating-icon portable-icon-four" x="281" y="312">•</text>
+<text class="portable-floating-icon portable-icon-five" x="55" y="92">·</text>
+</g>
+<g id="treeArtwork" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                        <!-- Default evergreen used by most themes. -->
+                        
+
+                        <!-- Easter: rounded egg-shaped spring topiary. -->
+                        
+
+                        <!-- 4th of July: navy tree with patriotic decorations and fireworks. -->
+                        
+
+                        <!-- Scottish: asymmetrical windswept Highland pine. -->
+                        
+
+
+                        <!-- Shared deciduous tree used by Fall and Spring. -->
+                        <g class="tree-form tree-form-deciduous" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(0, 0, 0, 0.18) 0px 12px 13px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <ellipse class="ground-shadow" cx="160" cy="383" rx="96" ry="15" style="display: inline; visibility: visible; fill: rgba(0, 0, 0, 0.2); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: blur(5px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <path class="season-trunk" d="M142 378 C143 345 147 309 153 275 L167 275 C174 315 178 348 177 378 Z" style="display: inline; visibility: visible; fill: url(&quot;#trunkGradient&quot;); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <path class="season-branch" d="M159 301 C145 267 128 238 105 211" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M162 295 C180 260 201 234 226 213" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M157 270 C147 230 145 194 151 158" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <path class="season-branch" d="M164 271 C174 232 177 197 171 162" style="display: inline; visibility: visible; fill: none; fill-opacity: 1; stroke: rgb(81, 49, 31); stroke-width: 9px; stroke-opacity: 1; stroke-linecap: round; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+
+                            <g class="season-canopy" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                                <ellipse cx="160" cy="132" rx="57" ry="54" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="109" cy="180" rx="61" ry="58" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="211" cy="180" rx="61" ry="58" style="display: inline; visibility: visible; fill: rgb(227, 168, 63); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="86" cy="244" rx="56" ry="54" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="160" cy="232" rx="83" ry="72" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="234" cy="244" rx="56" ry="54" style="display: inline; visibility: visible; fill: rgb(227, 168, 63); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="129" cy="292" rx="68" ry="47" style="display: inline; visibility: visible; fill: rgb(159, 62, 40); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                                <ellipse cx="194" cy="292" rx="68" ry="47" style="display: inline; visibility: visible; fill: rgb(214, 106, 44); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.12); stroke-width: 1.4px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            </g>
+
+                            <ellipse class="season-canopy-highlight" cx="126" cy="184" rx="38" ry="50" style="display: inline; visibility: visible; fill: rgba(255, 222, 155, 0.12); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <!-- Shared lights. -->
+                        <g id="lights" filter="url(#softGlow)" style="display: none; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: url(&quot;#softGlow&quot;); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <circle class="bulb bulb-one delay-1" cx="141" cy="127" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-2" cx="180" cy="143" r="7" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-3" cx="120" cy="183" r="8" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-1" cx="164" cy="193" r="7" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-3" cx="209" cy="190" r="8" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-1" cx="92" cy="246" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-2" cx="137" cy="247" r="7" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-3" cx="184" cy="256" r="8" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-2" cx="228" cy="247" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-3" cx="70" cy="310" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-three delay-1" cx="118" cy="304" r="7" style="display: inline; visibility: visible; fill: rgb(114, 200, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-four delay-2" cx="163" cy="320" r="8" style="display: inline; visibility: visible; fill: rgb(246, 247, 255); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.720722; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-one delay-1" cx="207" cy="305" r="7" style="display: inline; visibility: visible; fill: rgb(255, 94, 120); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.872468; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                            <circle class="bulb bulb-two delay-3" cx="251" cy="309" r="8" style="display: inline; visibility: visible; fill: rgb(255, 209, 102); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.62); stroke-width: 1.5px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 0.906683; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+                        </g>
+
+                        <!-- Default ornaments. -->
+                        
+
+                        <!-- Emoji ornament themes. -->
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <!-- Gothic ornaments with drifting mist and fluttering bats. -->
+                        
+
+                        <!-- Bookish ornaments with softly fluttering paper pages. -->
+                        
+
+                        <!-- Birthday ornaments with bobbing balloons and falling confetti. -->
+                        
+
+                        <!-- Teacher ornaments with chalkboard-style doodles. -->
+                        
+
+
+                        <!-- Elegant gold-and-ivory Christmas ornaments. -->
+                        
+
+                        <!-- Blue-and-silver Festival of Lights ornaments. -->
+                        
+
+                        <!-- Elegant emerald-and-gold Eid ornaments. -->
+                        
+
+                        <!-- Autumn maple leaves that drift and change color. -->
+                        <g class="theme-decor decor-fall" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <g transform="translate(118 130) rotate(-18) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(155 112) rotate(12) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(193 132) rotate(28) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(83 178) rotate(-35) scale(0.8)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-amber leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(239, 141, 50); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(124 179) rotate(20) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(167 166) rotate(-8) scale(0.95)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(215 185) rotate(33) scale(0.8)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(72 230) rotate(-28) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(112 232) rotate(15) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(158 222) rotate(-12) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(204 230) rotate(20) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-amber leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(239, 141, 50); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(244 241) rotate(34) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(103 278) rotate(-18) scale(0.9)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-rust leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(143, 57, 39); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(150 275) rotate(8) scale(0.75)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.88535; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(198 280) rotate(22) scale(0.85)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.965627; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(231 295) rotate(32) scale(0.7)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.765972; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+
+                            <g transform="translate(55 300)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-one leaf-red" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.0209781; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(260 305)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-two leaf-gold" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.846583; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(88 325)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-leaf falling-leaf falling-three leaf-orange" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(79, 35, 17, 0.42); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 0.946858; filter: drop-shadow(rgba(75, 31, 14, 0.24) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                        </g>
+
+                        <!-- Multicolored spring blossoms that open gently. -->
+                        
+
+                        <!-- Easter egg ornaments drawn as SVG shapes. -->
+                        
+
+                        <!-- Fourth decorations are integrated into its silhouette. -->
+                        
+
+                        <!-- Scottish ornaments use thistles and silver baubles. -->
+                        
+
+
+                        <!-- Elegant crystal topper. -->
+                        
+
+                        <!-- Star of David topper. -->
+                        
+
+                        <!-- Gold crescent with a star inside the opening. -->
+                        
+
+                        <!-- Autumn leaf topper. -->
+                        <g class="topper-variant topper-fall" filter="url(#bigGlow)" style="display: block; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: url(&quot;#bigGlow&quot;); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+                            <g transform="translate(151 48) rotate(-28)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-red" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(169, 68, 42); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(169 47) rotate(26)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-gold" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(230, 169, 61); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                            <g transform="translate(160 31)" style="display: inline; visibility: visible; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: miter; stroke-dasharray: none; opacity: 1; filter: none; stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;">
+<use class="fall-topper-leaf leaf-orange" href="#seasonLeaf" style="display: inline; visibility: visible; fill: rgb(217, 109, 45); fill-opacity: 1; stroke: rgba(255, 255, 255, 0.38); stroke-width: 0.9px; stroke-opacity: 1; stroke-linecap: butt; stroke-linejoin: round; stroke-dasharray: none; opacity: 1; filter: drop-shadow(rgba(72, 28, 12, 0.22) 0px 2px 2px); stop-color: rgb(0, 0, 0); stop-opacity: 1; font-family: &quot;Trebuchet MS&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; text-anchor: start; dominant-baseline: auto;"/>
+</g>
+                        </g>
+
+                        <!-- Multicolored spring blossom topper. -->
+                        
+
+                        <!-- Gothic moon-and-bat topper. -->
+                        
+
+                        <!-- Stack-of-books topper. -->
+                        
+
+                        <!-- Birthday party-hat topper. -->
+                        
+
+                        <!-- Teacher apple topper. -->
+                        
+
+                        <!-- Default star topper. -->
+                        
+
+                        <!-- Easter flower topper. -->
+                        
+
+                        <!-- Scottish thistle topper. -->
+                        
+                    </g>
+                </svg>
+				</main>
+</body>
+</html>

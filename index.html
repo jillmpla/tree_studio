@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-VCGZF0RQ1C"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+        gtag("config", "G-VCGZF0RQ1C");
+    </script>
+    <!-- End of Google tag (gtag.js) -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+        name="description"
+        content="Choose a themed tree and copy its portable SVG code."
+    />
+    <title>Tree Studio</title>
+
+    <link rel="stylesheet" href="style.css?v=33" />
+
+</head>
+
+<body data-theme="classic">
+    <main class="app-shell" id="treeApp" data-theme="classic">
+        <header class="hero">
+            <h1>Tree Studio</h1>
+            <p>
+                Choose a theme, then copy the tree into your own website.
+            </p>
+        </header>
+
+        <section class="tree-card" aria-labelledby="themeTitle">
+            <div class="scene-glow" aria-hidden="true"></div>
+
+            <div class="floating-icons" aria-hidden="true">
+                <span class="floating-icon icon-two"></span>
+                <span class="floating-icon icon-three"></span>
+                <span class="floating-icon icon-four"></span>
+                <span class="floating-icon icon-five"></span>
+            </div>
+
+            <div class="tree-stage">
+                <svg
+                    id="tree"
+                    viewBox="0 0 320 420"
+                    role="img"
+                    aria-labelledby="treeTitle treeDescription"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title id="treeTitle">Animated themed tree</title>
+                    <desc id="treeDescription">
+                        A decorative tree whose shape, colors, and ornaments
+                        change with the selected theme.
+                    </desc>
+
+                    <defs>
+                        <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+
+                        <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%">
+                            <feGaussianBlur stdDeviation="7" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+
+                        <linearGradient id="trunkGradient" x1="0" y1="0" x2="1" y2="0">
+                            <stop
+                                offset="0%"
+                                style="stop-color: var(--trunk-light, #8b5b3d)"
+                            />
+                            <stop
+                                offset="100%"
+                                style="stop-color: var(--trunk-dark, #573420)"
+                            />
+                        </linearGradient>
+
+                        <!-- Reusable Eid crescent-and-star mark. -->
+                        <g id="eidMoonStarMark">
+                            <mask id="eidMoonMask">
+                                <rect x="-60" y="-60" width="120" height="120" fill="black" />
+                                <circle cx="0" cy="0" r="40" fill="white" />
+                                <circle cx="18" cy="-5" r="33" fill="black" />
+                            </mask>
+
+                            <!-- Gold crescent fill. -->
+                            <circle
+                                class="eid-moon-fill"
+                                cx="0"
+                                cy="0"
+                                r="40"
+                                mask="url(#eidMoonMask)"
+                            />
+
+                            <!-- Five-point star with a clean border. -->
+                            <polygon
+                                class="eid-moon-star-outer"
+                                points="
+                                    29,-23
+                                    33,-13
+                                    44,-14
+                                    37,-5
+                                    44,4
+                                    33,2
+                                    29,13
+                                    25,2
+                                    14,4
+                                    21,-5
+                                    14,-14
+                                    25,-13
+                                "
+                            />
+                            <polygon
+                                class="eid-moon-star-inner"
+                                points="
+                                    29,-17
+                                    31.7,-10.3
+                                    39,-10.8
+                                    34.2,-5.2
+                                    39,0.5
+                                    31.7,-0.6
+                                    29,7
+                                    26.3,-0.6
+                                    19,0.5
+                                    23.8,-5.2
+                                    19,-10.8
+                                    26.3,-10.3
+                                "
+                            />
+                        </g>
+
+
+                        <g id="seasonLeaf">
+                            <path
+                                class="leaf-shape"
+                                d="M0,-13 L3,-7 L8,-10 L7,-4 L13,-2 L8,2 L11,7 L4,5 L3,13 L0,8 L-3,13 L-4,5 L-11,7 L-8,2 L-13,-2 L-7,-4 L-8,-10 L-3,-7 Z"
+                            />
+                            <path
+                                class="leaf-vein"
+                                d="M0,-10 V10 M0,-1 L-6,-5 M0,1 L6,-4 M0,4 L-5,7 M0,4 L5,7"
+                            />
+                        </g>
+
+                        <g id="springBlossom">
+                            <circle cx="0" cy="-7" r="5" />
+                            <circle cx="6.5" cy="-2" r="5" />
+                            <circle cx="4" cy="6" r="5" />
+                            <circle cx="-4" cy="6" r="5" />
+                            <circle cx="-6.5" cy="-2" r="5" />
+                            <circle class="blossom-center" cx="0" cy="0" r="3.6" />
+                        </g>
+                    </defs>
+
+                    <g id="treeArtwork">
+                        <!-- Default evergreen used by most themes. -->
+                        <g class="tree-form tree-form-default">
+                            <ellipse class="ground-shadow" cx="160" cy="383" rx="91" ry="15" />
+
+                            <rect
+                                x="141"
+                                y="309"
+                                width="38"
+                                height="69"
+                                rx="9"
+                                style="fill: url(#trunkGradient)"
+                            />
+
+                            <polygon
+                                points="160,55 88,165 118,157 62,246 98,236 34,327 160,306"
+                                style="fill: var(--tree-light, #1b8a61)"
+                            />
+
+                            <polygon
+                                points="160,55 232,165 202,157 258,246 222,236 286,327 160,306"
+                                style="fill: var(--tree-dark, #074936)"
+                            />
+
+                            <polygon
+                                points="160,78 120,166 139,159 95,248 128,236 78,309 160,294"
+                                style="fill: rgba(255, 255, 255, 0.08)"
+                            />
+
+                            <path class="garland" d="M112 164 C143 184, 177 184, 208 164" />
+                            <path class="garland" d="M81 238 C128 267, 192 267, 239 238" />
+                            <path class="garland" d="M59 305 C119 338, 201 338, 261 305" />
+                        </g>
+
+                        <!-- Easter: rounded egg-shaped spring topiary. -->
+                        <g class="tree-form tree-form-easter">
+                            <ellipse class="ground-shadow" cx="160" cy="383" rx="86" ry="14" />
+
+                            <rect
+                                x="144"
+                                y="288"
+                                width="32"
+                                height="90"
+                                rx="13"
+                                style="fill: url(#trunkGradient)"
+                            />
+
+                            <path class="easter-branch" d="M160 306 V133" />
+                            <path class="easter-branch" d="M160 220 L112 188" />
+                            <path class="easter-branch" d="M160 220 L208 188" />
+
+                            <ellipse class="easter-canopy canopy-pink" cx="160" cy="133" rx="47" ry="67" />
+                            <ellipse class="easter-canopy canopy-mint" cx="111" cy="220" rx="51" ry="68" />
+                            <ellipse class="easter-canopy canopy-blue" cx="209" cy="220" rx="51" ry="68" />
+                            <ellipse class="easter-canopy canopy-lilac" cx="160" cy="284" rx="81" ry="57" />
+
+                            <path class="easter-ribbon" d="M124 127 C146 145, 176 145, 196 127" />
+                            <path class="easter-ribbon" d="M78 222 C102 241, 126 243, 147 229" />
+                            <path class="easter-ribbon" d="M173 229 C195 244, 220 242, 242 221" />
+                            <path class="easter-ribbon" d="M94 283 C132 309, 190 309, 228 283" />
+                        </g>
+
+                        <!-- 4th of July: navy tree with patriotic decorations and fireworks. -->
+                        <g class="tree-form tree-form-fourth">
+                            <!-- Fireworks stay behind the tree. -->
+                            <g class="fourth-fireworks" aria-hidden="true">
+                                <g class="firework firework-red firework-one">
+                                    <path d="M70 102 L70 73" />
+                                    <path d="M70 102 L91 81" />
+                                    <path d="M70 102 L99 102" />
+                                    <path d="M70 102 L91 123" />
+                                    <path d="M70 102 L70 131" />
+                                    <path d="M70 102 L49 123" />
+                                    <path d="M70 102 L41 102" />
+                                    <path d="M70 102 L49 81" />
+                                </g>
+
+                                <g class="firework firework-white firework-two">
+                                    <path d="M248 124 L248 91" />
+                                    <path d="M248 124 L271 101" />
+                                    <path d="M248 124 L281 124" />
+                                    <path d="M248 124 L271 147" />
+                                    <path d="M248 124 L248 157" />
+                                    <path d="M248 124 L225 147" />
+                                    <path d="M248 124 L215 124" />
+                                    <path d="M248 124 L225 101" />
+                                </g>
+
+                                <g class="firework firework-blue firework-three">
+                                    <path d="M72 225 L72 200" />
+                                    <path d="M72 225 L90 207" />
+                                    <path d="M72 225 L97 225" />
+                                    <path d="M72 225 L90 243" />
+                                    <path d="M72 225 L72 250" />
+                                    <path d="M72 225 L54 243" />
+                                    <path d="M72 225 L47 225" />
+                                    <path d="M72 225 L54 207" />
+                                </g>
+                            </g>
+
+                            <ellipse
+                                class="ground-shadow"
+                                cx="160"
+                                cy="383"
+                                rx="94"
+                                ry="15"
+                            />
+
+                            <rect
+                                x="144"
+                                y="318"
+                                width="32"
+                                height="60"
+                                rx="7"
+                                style="fill: url(#trunkGradient)"
+                            />
+
+                            <!-- One continuous navy tree base. -->
+                            <path
+                                class="fourth-tree-base"
+                                d="
+                                    M160 58
+                                    L111 139
+                                    L133 134
+                                    L85 211
+                                    L112 203
+                                    L55 281
+                                    L89 273
+                                    L34 333
+                                    L160 313
+                                    L286 333
+                                    L231 273
+                                    L265 281
+                                    L208 203
+                                    L235 211
+                                    L187 134
+                                    L209 139
+                                    Z
+                                "
+                            />
+
+                            <!-- Subtle shading rather than a second bright color. -->
+                            <path
+                                class="fourth-tree-shadow"
+                                d="
+                                    M160 58
+                                    L209 139
+                                    L187 134
+                                    L235 211
+                                    L208 203
+                                    L265 281
+                                    L231 273
+                                    L286 333
+                                    L160 313
+                                    Z
+                                "
+                            />
+
+                            <path
+                                class="fourth-tree-highlight"
+                                d="
+                                    M160 76
+                                    L126 143
+                                    L142 138
+                                    L105 211
+                                    L127 204
+                                    L82 277
+                                    L111 268
+                                    L68 316
+                                    L160 301
+                                    Z
+                                "
+                            />
+
+                            <!-- Curved ribbon looks softer than straight stripes. -->
+                            <path
+                                class="fourth-ribbon fourth-ribbon-white"
+                                d="M112 153 C139 174 181 174 208 153"
+                            />
+
+                            <path
+                                class="fourth-ribbon fourth-ribbon-red"
+                                d="M84 225 C126 253 194 253 236 225"
+                            />
+
+                            <path
+                                class="fourth-ribbon fourth-ribbon-white"
+                                d="M60 292 C116 326 204 326 260 292"
+                            />
+
+                            <!-- White stars. -->
+                            <g class="fourth-stars">
+                                <polygon
+                                    points="0,-9 2.7,-3 9,-2.7 4,1.5 5.5,8 0,4.6 -5.5,8 -4,1.5 -9,-2.7 -2.7,-3"
+                                    transform="translate(160 111)"
+                                />
+
+                                <polygon
+                                    points="0,-8 2.4,-2.7 8,-2.4 3.6,1.3 5,7 0,4 -5,7 -3.6,1.3 -8,-2.4 -2.4,-2.7"
+                                    transform="translate(126 191)"
+                                />
+
+                                <polygon
+                                    points="0,-8 2.4,-2.7 8,-2.4 3.6,1.3 5,7 0,4 -5,7 -3.6,1.3 -8,-2.4 -2.4,-2.7"
+                                    transform="translate(198 191)"
+                                />
+
+                                <polygon
+                                    points="0,-8 2.4,-2.7 8,-2.4 3.6,1.3 5,7 0,4 -5,7 -3.6,1.3 -8,-2.4 -2.4,-2.7"
+                                    transform="translate(105 271)"
+                                />
+
+                                <polygon
+                                    points="0,-8 2.4,-2.7 8,-2.4 3.6,1.3 5,7 0,4 -5,7 -3.6,1.3 -8,-2.4 -2.4,-2.7"
+                                    transform="translate(215 271)"
+                                />
+                            </g>
+
+                            <g class="fourth-ornaments">
+                                <circle class="fourth-bauble bauble-red" cx="145" cy="202" r="8" />
+                                <circle class="fourth-bauble bauble-white" cx="179" cy="207" r="8" />
+                                <circle class="fourth-bauble bauble-red" cx="137" cy="279" r="9" />
+                                <circle class="fourth-bauble bauble-white" cx="184" cy="279" r="9" />
+                                <circle class="fourth-bauble bauble-red" cx="160" cy="302" r="8" />
+                            </g>
+                        </g>
+
+                        <!-- Scottish: asymmetrical windswept Highland pine. -->
+                        <g class="tree-form tree-form-scottish">
+                            <ellipse class="ground-shadow" cx="155" cy="383" rx="94" ry="14" />
+
+                            <rect
+                                x="149"
+                                y="292"
+                                width="32"
+                                height="86"
+                                rx="7"
+                                style="fill: url(#trunkGradient)"
+                            />
+
+                            <polygon
+                                class="highland-bough highland-light"
+                                points="167,69 74,155 157,137 130,175 187,145"
+                            />
+                            <polygon
+                                class="highland-bough highland-mid"
+                                points="167,114 48,226 151,198 109,252 201,203"
+                            />
+                            <polygon
+                                class="highland-bough highland-dark"
+                                points="167,181 27,326 150,287 99,339 250,294"
+                            />
+                            <polygon
+                                class="highland-shadow"
+                                points="167,69 216,143 184,137 233,220 199,205 276,309 167,279"
+                            />
+
+                            <path class="tartan-line tartan-blue-one" d="M74 213 L221 179" />
+                            <path class="tartan-line tartan-blue-two" d="M46 289 L251 244" />
+                            <path class="tartan-line tartan-purple-one" d="M114 142 L183 320" />
+                            <path class="tartan-line tartan-purple-two" d="M148 115 L220 305" />
+                        </g>
+
+
+                        <!-- Shared deciduous tree used by Fall and Spring. -->
+                        <g class="tree-form tree-form-deciduous">
+                            <ellipse class="ground-shadow" cx="160" cy="383" rx="96" ry="15" />
+
+                            <path
+                                class="season-trunk"
+                                d="M142 378 C143 345 147 309 153 275 L167 275 C174 315 178 348 177 378 Z"
+                            />
+
+                            <path class="season-branch" d="M159 301 C145 267 128 238 105 211" />
+                            <path class="season-branch" d="M162 295 C180 260 201 234 226 213" />
+                            <path class="season-branch" d="M157 270 C147 230 145 194 151 158" />
+                            <path class="season-branch" d="M164 271 C174 232 177 197 171 162" />
+
+                            <g class="season-canopy">
+                                <ellipse cx="160" cy="132" rx="57" ry="54" />
+                                <ellipse cx="109" cy="180" rx="61" ry="58" />
+                                <ellipse cx="211" cy="180" rx="61" ry="58" />
+                                <ellipse cx="86" cy="244" rx="56" ry="54" />
+                                <ellipse cx="160" cy="232" rx="83" ry="72" />
+                                <ellipse cx="234" cy="244" rx="56" ry="54" />
+                                <ellipse cx="129" cy="292" rx="68" ry="47" />
+                                <ellipse cx="194" cy="292" rx="68" ry="47" />
+                            </g>
+
+                            <ellipse class="season-canopy-highlight" cx="126" cy="184" rx="38" ry="50" />
+                        </g>
+
+                        <!-- Shared lights. -->
+                        <g id="lights" filter="url(#softGlow)">
+                            <circle class="bulb bulb-one delay-1" cx="141" cy="127" r="7" />
+                            <circle class="bulb bulb-two delay-2" cx="180" cy="143" r="7" />
+                            <circle class="bulb bulb-three delay-3" cx="120" cy="183" r="8" />
+                            <circle class="bulb bulb-four delay-1" cx="164" cy="193" r="7" />
+                            <circle class="bulb bulb-one delay-3" cx="209" cy="190" r="8" />
+                            <circle class="bulb bulb-two delay-1" cx="92" cy="246" r="8" />
+                            <circle class="bulb bulb-three delay-2" cx="137" cy="247" r="7" />
+                            <circle class="bulb bulb-four delay-3" cx="184" cy="256" r="8" />
+                            <circle class="bulb bulb-one delay-2" cx="228" cy="247" r="7" />
+                            <circle class="bulb bulb-two delay-3" cx="70" cy="310" r="8" />
+                            <circle class="bulb bulb-three delay-1" cx="118" cy="304" r="7" />
+                            <circle class="bulb bulb-four delay-2" cx="163" cy="320" r="8" />
+                            <circle class="bulb bulb-one delay-1" cx="207" cy="305" r="7" />
+                            <circle class="bulb bulb-two delay-3" cx="251" cy="309" r="8" />
+                        </g>
+
+                        <!-- Default ornaments. -->
+                        <g class="theme-decor decor-classic">
+                            <circle class="ornament ornament-a" cx="150" cy="160" r="11" />
+                            <circle class="ornament ornament-b" cx="196" cy="218" r="10" />
+                            <circle class="ornament ornament-c" cx="111" cy="281" r="12" />
+                            <circle class="ornament ornament-d" cx="208" cy="288" r="11" />
+                        </g>
+
+                        <!-- Emoji ornament themes. -->
+                        <g class="theme-decor decor-beach">
+                            <text x="139" y="166">🐚</text>
+                            <text x="188" y="225">🌺</text>
+                            <text x="96" y="289">🩴</text>
+                            <text x="196" y="296">🍍</text>
+                        </g>
+
+                        <g class="theme-decor decor-halloween">
+                            <text x="137" y="166">🎃</text>
+                            <text x="188" y="225">🦇</text>
+                            <text x="96" y="289">👻</text>
+                            <text x="195" y="296">🕸️</text>
+                        </g>
+
+                        <g class="theme-decor decor-dance">
+                            <text x="137" y="166">🎵</text>
+                            <text x="188" y="225">🪩</text>
+                            <text x="96" y="289">🎶</text>
+                            <text x="195" y="296">💃</text>
+                        </g>
+
+                        <g class="theme-decor decor-stpatrick">
+                            <text x="137" y="166">☘️</text>
+                            <text x="188" y="225">🌈</text>
+                            <text x="96" y="289">🎩</text>
+                            <text x="195" y="296">🪙</text>
+                        </g>
+
+                        <g class="theme-decor decor-space">
+                            <text x="137" y="166">🪐</text>
+                            <text x="188" y="225">🚀</text>
+                            <text x="96" y="289">👽</text>
+                            <text x="195" y="296">🌙</text>
+                        </g>
+
+                        <g class="theme-decor decor-nineties">
+                            <text x="137" y="166">💿</text>
+                            <text x="188" y="225">📼</text>
+                            <text x="96" y="289">📟</text>
+                            <text x="195" y="296">☎️</text>
+                        </g>
+
+                        <g class="theme-decor decor-winter">
+                            <text x="137" y="166">❄️</text>
+                            <text x="188" y="225">⛸️</text>
+                            <text x="96" y="289">⛄</text>
+                            <text x="195" y="296">🧤</text>
+                        </g>
+
+                        <g class="theme-decor decor-candy">
+                            <text x="137" y="166">🍭</text>
+                            <text x="188" y="225">🍬</text>
+                            <text x="96" y="289">🧁</text>
+                            <text x="195" y="296">🍩</text>
+                        </g>
+
+                        <g class="theme-decor decor-girly">
+                            <text x="137" y="166">🎀</text>
+                            <text x="188" y="225">💄</text>
+                            <text x="96" y="289">👜</text>
+                            <text x="195" y="296">👛</text>
+                        </g>
+
+                        <!-- Gothic ornaments with drifting mist and fluttering bats. -->
+                        <g class="theme-decor decor-gothic">
+                            <path class="gothic-chain" d="M111 166 C139 187 181 187 209 166" />
+                            <path class="gothic-chain" d="M83 242 C126 270 194 270 237 242" />
+
+                            <text class="gothic-bat gothic-bat-one" x="126" y="154">🦇</text>
+                            <text class="gothic-candle" x="199" y="205">🕯️</text>
+                            <text class="gothic-rose" x="105" y="284">🌹</text>
+                            <text class="gothic-heart" x="205" y="292">🖤</text>
+
+                            <path class="gothic-mist-line gothic-mist-one" d="M70 225 C111 208 146 240 189 221 C218 208 242 217 260 229" />
+                            <path class="gothic-mist-line gothic-mist-two" d="M55 293 C99 276 140 310 183 290 C218 274 247 282 271 297" />
+                        </g>
+
+                        <!-- Bookish ornaments with softly fluttering paper pages. -->
+                        <g class="theme-decor decor-bookish">
+                            <path class="bookish-garland" d="M107 165 C139 188 181 188 213 165" />
+                            <path class="bookish-garland" d="M79 242 C125 272 195 272 241 242" />
+
+                            <text class="bookish-item" x="142" y="160">📖</text>
+                            <text class="bookish-item" x="199" y="218">📚</text>
+                            <text class="bookish-item" x="105" y="286">☕</text>
+                            <text class="bookish-item" x="207" y="292">🕯️</text>
+
+                            <path class="bookish-page bookish-page-one" d="M83 185 Q91 178 99 184 Q91 185 84 191 Z" />
+                            <path class="bookish-page bookish-page-two" d="M222 181 Q230 174 238 180 Q230 182 223 188 Z" />
+                            <path class="bookish-page bookish-page-three" d="M151 255 Q160 248 169 254 Q160 257 152 263 Z" />
+                        </g>
+
+                        <!-- Birthday ornaments with bobbing balloons and falling confetti. -->
+                        <g class="theme-decor decor-birthday">
+                            <g class="birthday-balloon birthday-balloon-one">
+                                <ellipse class="birthday-balloon-fill balloon-pink" cx="115" cy="157" rx="12" ry="15" />
+                                <path class="birthday-balloon-string" d="M115 172 C108 188 123 196 115 212" />
+                            </g>
+                            <g class="birthday-balloon birthday-balloon-two">
+                                <ellipse class="birthday-balloon-fill balloon-blue" cx="204" cy="191" rx="12" ry="15" />
+                                <path class="birthday-balloon-string" d="M204 206 C196 221 211 230 203 247" />
+                            </g>
+
+                            <text class="birthday-item" x="151" y="213">🎂</text>
+                            <text class="birthday-item" x="103" y="286">🎁</text>
+                            <text class="birthday-item" x="207" y="291">🎉</text>
+
+                            <rect class="birthday-confetti confetti-one" x="78" y="205" width="5" height="11" rx="2" />
+                            <rect class="birthday-confetti confetti-two" x="238" y="234" width="5" height="11" rx="2" />
+                            <rect class="birthday-confetti confetti-three" x="146" y="281" width="5" height="11" rx="2" />
+                            <rect class="birthday-confetti confetti-four" x="181" y="133" width="5" height="11" rx="2" />
+                        </g>
+
+                        <!-- Teacher ornaments with chalkboard-style doodles. -->
+                        <g class="theme-decor decor-teacher">
+                            <path class="teacher-chalk-line teacher-chalk-one" d="M108 167 C138 188 182 188 212 167" />
+                            <path class="teacher-chalk-line teacher-chalk-two" d="M79 244 C124 274 196 274 241 244" />
+
+                            <text class="teacher-item teacher-item-one" x="140" y="159">🍎</text>
+                            <text class="teacher-item teacher-item-two" x="198" y="218">✏️</text>
+                            <text class="teacher-item teacher-item-three" x="105" y="286">📚</text>
+                            <text class="teacher-item teacher-item-four" x="207" y="291">🧪</text>
+
+                            <text class="teacher-chalk-text teacher-chalk-a" x="93" y="211">A+</text>
+                            <text class="teacher-chalk-text teacher-chalk-b" x="217" y="265">123</text>
+                        </g>
+
+
+                        <!-- Elegant gold-and-ivory Christmas ornaments. -->
+                        <g class="theme-decor decor-classy">
+                            <path class="classy-swag" d="M112 165 C140 185 180 185 208 165" />
+                            <path class="classy-swag" d="M82 244 C126 272 194 272 238 244" />
+                            <circle class="classy-bauble classy-gold shimmer-one" cx="147" cy="151" r="10" />
+                            <circle class="classy-bauble classy-pearl shimmer-two" cx="195" cy="210" r="10" />
+                            <circle class="classy-bauble classy-gold shimmer-three" cx="111" cy="279" r="11" />
+                            <circle class="classy-bauble classy-pearl shimmer-one" cx="207" cy="290" r="11" />
+                        </g>
+
+                        <!-- Blue-and-silver Festival of Lights ornaments. -->
+                        <g class="theme-decor decor-Judaism">
+                            <text class="Judaism-symbol symbol-delay-one" x="146" y="155">✡</text>
+                            <text class="Judaism-symbol symbol-delay-two" x="198" y="215">✡</text>
+                            <text class="Judaism-symbol symbol-delay-three" x="108" y="281">✡</text>
+                            <circle class="Judaism-bauble Judaism-silver" cx="204" cy="290" r="11" />
+                            <circle class="Judaism-bauble Judaism-blue" cx="162" cy="249" r="9" />
+                        </g>
+
+                        <!-- Elegant emerald-and-gold Eid ornaments. -->
+                        <g class="theme-decor decor-Islam">
+                            <!-- A dedicated strand of warm lights fills the top of the tree. -->
+                            <g class="eid-light-strand" filter="url(#softGlow)">
+                                <path
+                                    class="eid-light-wire"
+                                    d="M137 119 C149 131 171 131 183 119"
+                                />
+
+                                <circle class="eid-light eid-light-gold eid-delay-one" cx="140" cy="120" r="3.4" />
+                                <circle class="eid-light eid-light-ivory eid-delay-two" cx="151" cy="126" r="3.2" />
+                                <circle class="eid-light eid-light-mint eid-delay-three" cx="161" cy="128" r="3" />
+                                <circle class="eid-light eid-light-ivory eid-delay-one" cx="172" cy="126" r="3.2" />
+                                <circle class="eid-light eid-light-gold eid-delay-two" cx="181" cy="120" r="3.4" />
+                            </g>
+
+                            <!-- Additional warm lights make the branches feel full and festive. -->
+                            <g class="eid-tree-lights" filter="url(#softGlow)">
+                                <circle class="eid-light eid-light-ivory eid-delay-three" cx="151" cy="95" r="3.8" />
+                                <circle class="eid-light eid-light-gold eid-delay-one" cx="169" cy="106" r="3.3" />
+                                <circle class="eid-light eid-light-mint eid-delay-two" cx="130" cy="143" r="3.4" />
+                                <circle class="eid-light eid-light-ivory eid-delay-one" cx="191" cy="151" r="3.7" />
+
+                                <circle class="eid-light eid-light-gold eid-delay-two" cx="102" cy="205" r="3.5" />
+                                <circle class="eid-light eid-light-ivory eid-delay-three" cx="154" cy="195" r="3.9" />
+                                <circle class="eid-light eid-light-mint eid-delay-one" cx="219" cy="203" r="3.4" />
+
+                                <circle class="eid-light eid-light-ivory eid-delay-two" cx="91" cy="256" r="3.6" />
+                                <circle class="eid-light eid-light-gold eid-delay-three" cx="139" cy="267" r="3.3" />
+                                <circle class="eid-light eid-light-mint eid-delay-one" cx="181" cy="277" r="3.5" />
+                                <circle class="eid-light eid-light-ivory eid-delay-two" cx="231" cy="267" r="3.8" />
+
+                                <circle class="eid-light eid-light-gold eid-delay-one" cx="77" cy="305" r="3.5" />
+                                <circle class="eid-light eid-light-ivory eid-delay-three" cx="124" cy="309" r="3.7" />
+                                <circle class="eid-light eid-light-mint eid-delay-two" cx="198" cy="310" r="3.5" />
+                                <circle class="eid-light eid-light-gold eid-delay-three" cx="244" cy="306" r="3.4" />
+
+                                <!-- Extra lights fill the previously bare right branch. -->
+                                <circle class="eid-light eid-light-gold eid-delay-two" cx="218" cy="266" r="3.2" />
+                                <circle class="eid-light eid-light-ivory eid-delay-one" cx="126" cy="225" r="3.1" />
+                            </g>
+
+                            <!-- Soft geometric sparkles scattered between the lights. -->
+                            <g class="eid-sparkle-field">
+                                <polygon
+                                    class="eid-sparkle eid-delay-one"
+                                    points="0,-7 1.6,-1.6 7,0 1.6,1.6 0,7 -1.6,1.6 -7,0 -1.6,-1.6"
+                                    transform="translate(188 112)"
+                                />
+                                <polygon
+                                    class="eid-sparkle eid-delay-two"
+                                    points="0,-6 1.4,-1.4 6,0 1.4,1.4 0,6 -1.4,1.4 -6,0 -1.4,-1.4"
+                                    transform="translate(113 183)"
+                                />
+                                <polygon
+                                    class="eid-sparkle eid-delay-one"
+                                    points="0,-7 1.6,-1.6 7,0 1.6,1.6 0,7 -1.6,1.6 -7,0 -1.6,-1.6"
+                                    transform="translate(159 229)"
+                                />
+                                <polygon
+                                    class="eid-sparkle eid-delay-three"
+                                    points="0,-5 1.2,-1.2 5,0 1.2,1.2 0,5 -1.2,1.2 -5,0 -1.2,-1.2"
+                                    transform="translate(74 282)"
+                                />
+                                <polygon
+                                    class="eid-sparkle eid-delay-two"
+                                    points="0,-5 1.2,-1.2 5,0 1.2,1.2 0,5 -1.2,1.2 -5,0 -1.2,-1.2"
+                                    transform="translate(228 289)"
+                                />
+                            </g>
+
+                            <!-- Traditional hanging lantern: upper left. -->
+                            <g transform="translate(124 166) scale(0.92)">
+                                <g class="Islam-lantern lantern-delay-one">
+                                    <path class="lantern-chain" d="M0 -33 V-24" />
+                                    <path class="lantern-handle" d="M-7 -19 C-7 -28 7 -28 7 -19" />
+                                    <path class="lantern-cap" d="M-10 -20 H10 L7 -15 H-7 Z" />
+                                    <path class="lantern-shell" d="M-9 -15 Q-15 -7 -12 5 Q-10 14 0 20 Q10 14 12 5 Q15 -7 9 -15 Z" />
+                                    <path class="lantern-window" d="M-5 -10 Q0 -16 5 -10 V7 Q0 13 -5 7 Z" />
+                                    <path class="lantern-foot" d="M-6 17 H6 L3 22 H-3 Z" />
+                                    <circle class="lantern-finial" cx="0" cy="24" r="1.8" />
+                                </g>
+                            </g>
+
+                            <!-- Smaller lantern fills the upper-right branch. -->
+                            <g transform="translate(205 156) scale(0.66)">
+                                <g class="Islam-lantern lantern-delay-three">
+                                    <path class="lantern-chain" d="M0 -33 V-24" />
+                                    <path class="lantern-handle" d="M-7 -19 C-7 -28 7 -28 7 -19" />
+                                    <path class="lantern-cap" d="M-10 -20 H10 L7 -15 H-7 Z" />
+                                    <path class="lantern-shell" d="M-9 -15 Q-15 -7 -12 5 Q-10 14 0 20 Q10 14 12 5 Q15 -7 9 -15 Z" />
+                                    <path class="lantern-window" d="M-5 -10 Q0 -16 5 -10 V7 Q0 13 -5 7 Z" />
+                                    <path class="lantern-foot" d="M-6 17 H6 L3 22 H-3 Z" />
+                                    <circle class="lantern-finial" cx="0" cy="24" r="1.8" />
+                                </g>
+                            </g>
+
+                            <!-- Traditional hanging lantern: middle right. -->
+                            <g transform="translate(201 228) scale(0.98)">
+                                <g class="Islam-lantern lantern-delay-two">
+                                    <path class="lantern-chain" d="M0 -33 V-24" />
+                                    <path class="lantern-handle" d="M-7 -19 C-7 -28 7 -28 7 -19" />
+                                    <path class="lantern-cap" d="M-10 -20 H10 L7 -15 H-7 Z" />
+                                    <path class="lantern-shell" d="M-9 -15 Q-15 -7 -12 5 Q-10 14 0 20 Q10 14 12 5 Q15 -7 9 -15 Z" />
+                                    <path class="lantern-window" d="M-5 -10 Q0 -16 5 -10 V7 Q0 13 -5 7 Z" />
+                                    <path class="lantern-foot" d="M-6 17 H6 L3 22 H-3 Z" />
+                                    <circle class="lantern-finial" cx="0" cy="24" r="1.8" />
+                                </g>
+                            </g>
+
+                            <!-- Small version of the same crescent-and-star mark. -->
+                            <g transform="translate(105 277) scale(0.29)">
+                                <use
+                                    class="eid-moon-star-mark eid-small-moon-star symbol-delay-two"
+                                    href="#eidMoonStarMark"
+                                />
+                            </g>
+                        </g>
+
+                        <!-- Autumn maple leaves that drift and change color. -->
+                        <g class="theme-decor decor-fall">
+                            <g transform="translate(118 130) rotate(-18) scale(0.9)"><use class="fall-leaf leaf-red leaf-delay-one" href="#seasonLeaf" /></g>
+                            <g transform="translate(155 112) rotate(12) scale(0.75)"><use class="fall-leaf leaf-gold leaf-delay-two" href="#seasonLeaf" /></g>
+                            <g transform="translate(193 132) rotate(28) scale(0.9)"><use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" /></g>
+
+                            <g transform="translate(83 178) rotate(-35) scale(0.8)"><use class="fall-leaf leaf-amber leaf-delay-two" href="#seasonLeaf" /></g>
+                            <g transform="translate(124 179) rotate(20) scale(0.75)"><use class="fall-leaf leaf-rust leaf-delay-three" href="#seasonLeaf" /></g>
+                            <g transform="translate(167 166) rotate(-8) scale(0.95)"><use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" /></g>
+                            <g transform="translate(215 185) rotate(33) scale(0.8)"><use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" /></g>
+
+                            <g transform="translate(72 230) rotate(-28) scale(0.85)"><use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" /></g>
+                            <g transform="translate(112 232) rotate(15) scale(0.75)"><use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" /></g>
+                            <g transform="translate(158 222) rotate(-12) scale(0.85)"><use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" /></g>
+                            <g transform="translate(204 230) rotate(20) scale(0.75)"><use class="fall-leaf leaf-amber leaf-delay-three" href="#seasonLeaf" /></g>
+                            <g transform="translate(244 241) rotate(34) scale(0.85)"><use class="fall-leaf leaf-rust leaf-delay-one" href="#seasonLeaf" /></g>
+
+                            <g transform="translate(103 278) rotate(-18) scale(0.9)"><use class="fall-leaf leaf-rust leaf-delay-two" href="#seasonLeaf" /></g>
+                            <g transform="translate(150 275) rotate(8) scale(0.75)"><use class="fall-leaf leaf-orange leaf-delay-three" href="#seasonLeaf" /></g>
+                            <g transform="translate(198 280) rotate(22) scale(0.85)"><use class="fall-leaf leaf-gold leaf-delay-one" href="#seasonLeaf" /></g>
+                            <g transform="translate(231 295) rotate(32) scale(0.7)"><use class="fall-leaf leaf-red leaf-delay-two" href="#seasonLeaf" /></g>
+
+                            <g transform="translate(55 300)"><use class="fall-leaf falling-leaf falling-one leaf-red" href="#seasonLeaf" /></g>
+                            <g transform="translate(260 305)"><use class="fall-leaf falling-leaf falling-two leaf-gold" href="#seasonLeaf" /></g>
+                            <g transform="translate(88 325)"><use class="fall-leaf falling-leaf falling-three leaf-orange" href="#seasonLeaf" /></g>
+                        </g>
+
+                        <!-- Multicolored spring blossoms that open gently. -->
+                        <g class="theme-decor decor-spring">
+                            <g transform="translate(120 132) scale(0.95)"><use class="spring-blossom blossom-pink bloom-one" href="#springBlossom" /></g>
+                            <g transform="translate(160 113) scale(0.78)"><use class="spring-blossom blossom-white bloom-two" href="#springBlossom" /></g>
+                            <g transform="translate(201 139) scale(0.92)"><use class="spring-blossom blossom-lilac bloom-three" href="#springBlossom" /></g>
+
+                            <g transform="translate(83 188) scale(0.8)"><use class="spring-blossom blossom-blue bloom-two" href="#springBlossom" /></g>
+                            <g transform="translate(126 184) scale(0.72)"><use class="spring-blossom blossom-coral bloom-three" href="#springBlossom" /></g>
+                            <g transform="translate(166 172) scale(0.9)"><use class="spring-blossom blossom-yellow bloom-one" href="#springBlossom" /></g>
+                            <g transform="translate(218 193) scale(0.82)"><use class="spring-blossom blossom-pink bloom-two" href="#springBlossom" /></g>
+
+                            <g transform="translate(73 241) scale(0.75)"><use class="spring-blossom blossom-lilac bloom-three" href="#springBlossom" /></g>
+                            <g transform="translate(112 236) scale(0.86)"><use class="spring-blossom blossom-white bloom-one" href="#springBlossom" /></g>
+                            <g transform="translate(156 225) scale(0.76)"><use class="spring-blossom blossom-blue bloom-two" href="#springBlossom" /></g>
+                            <g transform="translate(205 239) scale(0.88)"><use class="spring-blossom blossom-coral bloom-three" href="#springBlossom" /></g>
+                            <g transform="translate(244 247) scale(0.74)"><use class="spring-blossom blossom-yellow bloom-one" href="#springBlossom" /></g>
+
+                            <g transform="translate(105 286) scale(0.9)"><use class="spring-blossom blossom-pink bloom-three" href="#springBlossom" /></g>
+                            <g transform="translate(153 279) scale(0.72)"><use class="spring-blossom blossom-lilac bloom-one" href="#springBlossom" /></g>
+                            <g transform="translate(199 289) scale(0.86)"><use class="spring-blossom blossom-white bloom-two" href="#springBlossom" /></g>
+                        </g>
+
+                        <!-- Easter egg ornaments drawn as SVG shapes. -->
+                        <g class="theme-decor decor-easter">
+                            <ellipse class="egg egg-pink" cx="139" cy="157" rx="13" ry="17" />
+                            <path class="egg-line" d="M128 157 H150" />
+
+                            <ellipse class="egg egg-yellow" cx="193" cy="221" rx="13" ry="17" />
+                            <path class="egg-line" d="M182 221 H204" />
+
+                            <ellipse class="egg egg-blue" cx="101" cy="281" rx="13" ry="17" />
+                            <path class="egg-line" d="M90 281 H112" />
+
+                            <ellipse class="egg egg-green" cx="204" cy="293" rx="13" ry="17" />
+                            <path class="egg-line" d="M193 293 H215" />
+                        </g>
+
+                        <!-- Fourth decorations are integrated into its silhouette. -->
+                        <g class="theme-decor decor-fourth"></g>
+
+                        <!-- Scottish ornaments use thistles and silver baubles. -->
+                        <g class="theme-decor decor-scottish">
+                            <circle class="silver-bauble" cx="126" cy="171" r="10" />
+                            <circle class="silver-bauble" cx="192" cy="222" r="9" />
+                            <circle class="silver-bauble" cx="101" cy="286" r="11" />
+                            <circle class="silver-bauble" cx="208" cy="292" r="10" />
+                        </g>
+
+
+                        <!-- Elegant crystal topper. -->
+                        <g class="topper-variant topper-classy" filter="url(#bigGlow)">
+                            <polygon class="classy-topper-star" points="160,22 168,43 190,45 173,59 178,80 160,68 142,80 147,59 130,45 152,43" />
+                            <circle class="classy-topper-gem" cx="160" cy="52" r="7" />
+                        </g>
+
+                        <!-- Star of David topper. -->
+                        <g class="topper-variant topper-Judaism" filter="url(#bigGlow)">
+                            <polygon class="Judaism-topper-star" points="160,22 187,69 133,69" />
+                            <polygon class="Judaism-topper-star" points="160,80 133,34 187,34" />
+                            <circle class="Judaism-topper-center" cx="160" cy="52" r="5" />
+                        </g>
+
+                        <!-- Gold crescent with a star inside the opening. -->
+                        <g class="topper-variant topper-Islam">
+                            <g transform="translate(160 31) scale(0.65)">
+                                <use
+                                    class="eid-moon-star-mark eid-topper-moon-star"
+                                    href="#eidMoonStarMark"
+                                />
+                            </g>
+                        </g>
+
+                        <!-- Autumn leaf topper. -->
+                        <g class="topper-variant topper-fall" filter="url(#bigGlow)">
+                            <g transform="translate(151 48) rotate(-28)"><use class="fall-topper-leaf leaf-red" href="#seasonLeaf" /></g>
+                            <g transform="translate(169 47) rotate(26)"><use class="fall-topper-leaf leaf-gold" href="#seasonLeaf" /></g>
+                            <g transform="translate(160 31)"><use class="fall-topper-leaf leaf-orange" href="#seasonLeaf" /></g>
+                        </g>
+
+                        <!-- Multicolored spring blossom topper. -->
+                        <g class="topper-variant topper-spring" filter="url(#bigGlow)">
+                            <g transform="translate(147 53) scale(1.05)"><use class="spring-topper-blossom blossom-pink bloom-one" href="#springBlossom" /></g>
+                            <g transform="translate(173 53) scale(1.05)"><use class="spring-topper-blossom blossom-lilac bloom-two" href="#springBlossom" /></g>
+                            <g transform="translate(160 35) scale(1.12)"><use class="spring-topper-blossom blossom-white bloom-three" href="#springBlossom" /></g>
+                        </g>
+
+                        <!-- Gothic moon-and-bat topper. -->
+                        <g class="topper-variant topper-gothic" filter="url(#bigGlow)">
+                            <path
+                                class="gothic-topper-moon"
+                                fill-rule="evenodd"
+                                d="M160 24 A28 28 0 1 0 160 80 A21 21 0 1 1 174 32 A28 28 0 0 0 160 24 Z"
+                            />
+                            <path
+                                class="gothic-topper-bat"
+                                d="M147 52 C151 45 156 48 160 52 C164 48 169 45 173 52 C169 51 167 56 166 61 C163 58 161 57 160 62 C159 57 157 58 154 61 C153 56 151 51 147 52 Z"
+                            />
+                        </g>
+
+                        <!-- Stack-of-books topper. -->
+                        <g class="topper-variant topper-bookish">
+                            <!-- Bottom book -->
+                            <g transform="rotate(-3 160 69)">
+                                <rect
+                                    class="book-stack-cover book-stack-cover-bottom"
+                                    x="122"
+                                    y="60"
+                                    width="76"
+                                    height="16"
+                                    rx="3"
+                                />
+
+                                <rect
+                                    class="book-stack-pages"
+                                    x="128"
+                                    y="63"
+                                    width="65"
+                                    height="10"
+                                    rx="2"
+                                />
+
+                                <path
+                                    class="book-stack-spine"
+                                    d="M128 61 V75"
+                                />
+
+                                <path
+                                    class="book-stack-page-lines"
+                                    d="M137 66 H188 M137 70 H188"
+                                />
+                            </g>
+
+                            <!-- Middle book -->
+                            <g transform="rotate(3 160 54)">
+                                <rect
+                                    class="book-stack-cover book-stack-cover-middle"
+                                    x="128"
+                                    y="46"
+                                    width="66"
+                                    height="15"
+                                    rx="3"
+                                />
+
+                                <rect
+                                    class="book-stack-pages"
+                                    x="134"
+                                    y="49"
+                                    width="55"
+                                    height="9"
+                                    rx="2"
+                                />
+
+                                <path
+                                    class="book-stack-spine"
+                                    d="M134 47 V60"
+                                />
+
+                                <path
+                                    class="book-stack-page-lines"
+                                    d="M143 52 H185 M143 56 H185"
+                                />
+                            </g>
+
+                            <!-- Top book -->
+                            <g transform="rotate(-2 160 40)">
+                                <rect
+                                    class="book-stack-cover book-stack-cover-top"
+                                    x="135"
+                                    y="32"
+                                    width="55"
+                                    height="15"
+                                    rx="3"
+                                />
+
+                                <rect
+                                    class="book-stack-pages"
+                                    x="141"
+                                    y="35"
+                                    width="44"
+                                    height="9"
+                                    rx="2"
+                                />
+
+                                <path
+                                    class="book-stack-spine"
+                                    d="M141 33 V46"
+                                />
+
+                                <path
+                                    class="book-stack-page-lines"
+                                    d="M149 38 H181 M149 42 H181"
+                                />
+                            </g>
+
+                            <!-- Bookmark hanging from the top book -->
+                            <path
+                                class="book-stack-bookmark"
+                                d="M169 33 V53 L165 49 L161 53 V33 Z"
+                            />
+
+                            <!-- Small magical page glints -->
+                            <g class="book-stack-glints" aria-hidden="true">
+                                <path
+                                    class="book-stack-glint glint-one"
+                                    d="M118 43 H128 M123 38 V48"
+                                />
+
+                                <path
+                                    class="book-stack-glint glint-two"
+                                    d="M194 28 H202 M198 24 V32"
+                                />
+                            </g>
+                        </g>
+
+                        <!-- Birthday party-hat topper. -->
+                        <g class="topper-variant topper-birthday" filter="url(#bigGlow)">
+                            <path class="birthday-hat" d="M160 24 L133 73 H187 Z" />
+                            <path class="birthday-hat-stripe" d="M148 47 L177 58" />
+                            <path class="birthday-hat-stripe" d="M140 62 L186 68" />
+                            <circle class="birthday-hat-pom" cx="160" cy="22" r="8" />
+                            <circle class="birthday-hat-dot dot-one" cx="156" cy="43" r="3" />
+                            <circle class="birthday-hat-dot dot-two" cx="170" cy="55" r="3" />
+                            <circle class="birthday-hat-dot dot-three" cx="151" cy="64" r="3" />
+                        </g>
+
+                        <!-- Teacher apple topper. -->
+                        <g class="topper-variant topper-teacher" filter="url(#bigGlow)">
+                            <path class="teacher-apple" d="M160 39 C147 29 130 40 132 56 C134 72 147 80 160 72 C173 80 186 72 188 56 C190 40 173 29 160 39 Z" />
+                            <path class="teacher-apple-stem" d="M160 39 C160 31 164 25 169 22" />
+                            <path class="teacher-apple-leaf" d="M164 31 C173 23 183 26 185 35 C177 37 170 35 164 31 Z" />
+                            <path class="teacher-apple-shine" d="M145 47 C141 52 141 58 144 62" />
+                        </g>
+
+                        <!-- Default star topper. -->
+                        <g class="topper-variant topper-default" filter="url(#bigGlow)">
+                            <polygon
+                                class="star"
+                                points="160,24 168,45 191,46 173,60 179,82 160,69 141,82 147,60 129,46 152,45"
+                            />
+                            <circle class="topper-center" cx="160" cy="53" r="5" />
+                        </g>
+
+                        <!-- Easter flower topper. -->
+                        <g class="topper-variant topper-easter" filter="url(#bigGlow)">
+                            <circle class="flower-petal" cx="160" cy="37" r="13" />
+                            <circle class="flower-petal" cx="142" cy="51" r="13" />
+                            <circle class="flower-petal" cx="178" cy="51" r="13" />
+                            <circle class="flower-petal" cx="149" cy="70" r="13" />
+                            <circle class="flower-petal" cx="171" cy="70" r="13" />
+                            <circle class="flower-center" cx="160" cy="55" r="12" />
+                        </g>
+
+                        <!-- Scottish thistle topper. -->
+                        <g class="topper-variant topper-scottish" filter="url(#bigGlow)">
+                            <path class="thistle-leaf" d="M160 72 C145 61, 141 47, 151 39 C153 51, 158 56, 160 58" />
+                            <path class="thistle-leaf" d="M160 72 C175 61, 179 47, 169 39 C167 51, 162 56, 160 58" />
+                            <path class="thistle-leaf" d="M160 72 C149 56, 151 39, 160 29 C169 39, 171 56, 160 72" />
+                            <ellipse class="thistle-bloom" cx="160" cy="35" rx="17" ry="14" />
+                            <path class="thistle-stem" d="M160 47 V82" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="theme-copy" aria-live="polite">
+                <p class="theme-label">Now showing</p>
+                <h2 id="themeTitle">Classic Christmas</h2>
+                <p id="themeDescription">
+                    Evergreen branches, warm lights, and timeless holiday colors.
+                </p>
+            </div>
+
+            <!-- Compact export bar. -->
+            <div class="export-bar">
+                <div class="export-intro">
+                    <strong>Use this tree</strong>
+                    <span>Copy a ready-to-paste animated SVG.</span>
+                </div>
+
+                <div class="export-actions">
+                    <button
+                        id="copySvgButton"
+                        class="export-button primary"
+                        type="button"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                            <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                        </svg>
+                        Copy SVG
+                    </button>
+
+                    <button
+                        id="viewSvgButton"
+                        class="export-button secondary"
+                        type="button"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8 9 4 12l4 3"></path>
+                            <path d="m16 9 4 3-4 3"></path>
+                            <path d="m14 5-4 14"></path>
+                        </svg>
+                        View code
+                    </button>
+                </div>
+
+                <p
+                    id="copyStatus"
+                    class="copy-status"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </div>
+        </section>
+
+        <section class="controls" aria-label="Choose a tree theme">
+            <div class="theme-buttons">
+
+                <button class="theme-button" type="button" data-theme-button="fourth" aria-pressed="false">
+                    <span aria-hidden="true">🗽</span><span>4th of July</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="nineties" aria-pressed="false">
+                    <span aria-hidden="true">📼</span><span>1990s</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="beach" aria-pressed="false">
+                    <span aria-hidden="true">🏖️</span><span>Beach</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="birthday" aria-pressed="false">
+                    <span aria-hidden="true">🎈</span><span>Birthday</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="bookish" aria-pressed="false">
+                    <span aria-hidden="true">📚</span><span>Bookish</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="candy" aria-pressed="false">
+                    <span aria-hidden="true">🍭</span><span>Candy</span>
+                </button>
+
+                <button class="theme-button active" type="button" data-theme-button="classic" aria-pressed="true">
+                    <span aria-hidden="true">🎄</span><span>Classic</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="classy" aria-pressed="false">
+                    <span aria-hidden="true">✨</span><span>Classy</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="dance" aria-pressed="false">
+                    <span aria-hidden="true">🪩</span><span>Dancing</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="easter" aria-pressed="false">
+                    <span aria-hidden="true">🐰</span><span>Easter</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="fall" aria-pressed="false">
+                    <span aria-hidden="true">🍂</span><span>Fall</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="girly" aria-pressed="false">
+                    <span aria-hidden="true">🎀</span><span>Girly</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="gothic" aria-pressed="false">
+                    <span aria-hidden="true">🦇</span><span>Gothic</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="halloween" aria-pressed="false">
+                    <span aria-hidden="true">🎃</span><span>Halloween</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="Islam" aria-pressed="false">
+                    <span aria-hidden="true">☪️</span><span>Islam</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="Judaism" aria-pressed="false">
+                    <span aria-hidden="true">✡️</span><span>Judaism</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="scottish" aria-pressed="false">
+                    <span aria-hidden="true">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span>Scottish</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="space" aria-pressed="false">
+                    <span aria-hidden="true">🪐</span><span>Space</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="spring" aria-pressed="false">
+                    <span aria-hidden="true">🌸</span><span>Spring</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="stpatrick" aria-pressed="false">
+                    <span aria-hidden="true">☘️</span><span>St. Patrick's</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="teacher" aria-pressed="false">
+                    <span aria-hidden="true">🍎</span><span>Teacher</span>
+                </button>
+
+                <button class="theme-button" type="button" data-theme-button="winter" aria-pressed="false">
+                    <span aria-hidden="true">❄️</span><span>Winter</span>
+                </button>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- SVG code viewer. -->
+    <dialog id="svgCodeDialog" class="code-dialog">
+        <div class="dialog-header">
+            <div>
+                <p>Ready to paste</p>
+                <h2>SVG code</h2>
+            </div>
+
+            <button
+                id="closeCodeDialog"
+                class="close-dialog-button"
+                type="button"
+                aria-label="Close SVG code"
+            >
+                ×
+            </button>
+        </div>
+
+        <p class="dialog-description">
+            The selected colors, shape, ornaments, floating symbols, spotlight, and animations are included.
+        </p>
+
+        <textarea
+            id="svgCodeOutput"
+            class="svg-code-output"
+            readonly
+            spellcheck="false"
+            aria-label="Generated SVG code"
+        ></textarea>
+
+        <div class="dialog-actions">
+            <button
+                id="copyDialogCode"
+                class="export-button primary"
+                type="button"
+            >
+                Copy code
+            </button>
+
+            <button
+                id="closeDialogButton"
+                class="export-button secondary"
+                type="button"
+            >
+                Close
+            </button>
+        </div>
+    </dialog>
+
+    <script>
+        const app = document.getElementById("treeApp");
+        const themeTitle = document.getElementById("themeTitle");
+        const themeDescription = document.getElementById("themeDescription");
+        const themeButtons = [...document.querySelectorAll("[data-theme-button]")];
+
+        const themes = {
+            classic: {
+                title: "Classic Christmas",
+                description: "Evergreen branches, warm lights, and timeless holiday colors."
+            },
+            gothic: {
+                title: "Gothic Midnight",
+                description: "Black roses, candlelight, drifting mist, and bats beneath a violet moon."
+            },
+            bookish: {
+                title: "Bookish Glow",
+                description: "Cozy books, warm tea, candlelight, and enchanted pages that softly flutter."
+            },
+            birthday: {
+                title: "Birthday Celebration",
+                description: "Bobbing balloons, colorful confetti, cake, gifts, and a cheerful party glow."
+            },
+            teacher: {
+                title: "Back to School",
+                description: "Apples, pencils, books, science, and playful chalkboard doodles for the classroom."
+            },
+            classy: {
+                title: "Classy Christmas",
+                description: "Deep evergreen, champagne gold, ivory pearls, and an elegant crystal glow."
+            },
+            Judaism: {
+                title: "Festival of Lights",
+                description: "A blue-and-silver tree with Stars of David and a peaceful luminous glow."
+            },
+            Islam: {
+                title: "Eid Moonlight",
+                description: "Emerald branches, glowing lanterns, warm lights, and a sparkling gold crescent with a star."
+            },
+            fall: {
+                title: "Autumn Glow",
+                description: "A warm deciduous tree with changing leaves that drift gently toward the ground."
+            },
+            spring: {
+                title: "Spring in Bloom",
+                description: "Fresh green branches covered in flowers that open with a soft bloom."
+            },
+            beach: {
+                title: "Beach Day",
+                description: "Sea-glass colors, shells, flowers, and a little tropical sunshine."
+            },
+            halloween: {
+                title: "Haunted Halloween",
+                description: "A playful midnight tree with pumpkins, ghosts, bats, and purple lights."
+            },
+            dance: {
+                title: "Dancing Tree",
+                description: "A cheerful disco tree that sways to its own imaginary soundtrack."
+            },
+            stpatrick: {
+                title: "St. Patrick's Day",
+                description: "Lucky greens, golden lights, shamrocks, rainbows, and a little magic."
+            },
+            space: {
+                title: "Deep Space",
+                description: "A cosmic tree filled with planets, stars, rockets, and moonlight."
+            },
+            nineties: {
+                title: "Totally 1990s",
+                description: "Neon color, VHS tapes, CDs, and unapologetic nostalgia."
+            },
+            winter: {
+                title: "Quiet Winter",
+                description: "Frosted branches, icy lights, soft snow, and a calm blue glow."
+            },
+            candy: {
+                title: "Candy Shop",
+                description: "A sweet pastel tree decorated with lollipops, cupcakes, and treats."
+            },
+            girly: {
+                title: "Pink Whimsy",
+                description: "Bows, beauty details, soft pink lights, and a polished playful glow."
+            },
+            easter: {
+                title: "Easter Topiary",
+                description: "A rounded spring topiary with pastel egg ornaments and a flower topper."
+            },
+            fourth: {
+                title: "Stars and Stripes",
+                description: "A navy tree with red-and-white ribbon, stars, ornaments, and animated fireworks."
+            },
+            scottish: {
+                title: "Highland Pine",
+                description: "A windswept pine with tartan lines, silver ornaments, and a thistle topper."
+            }
+        };
+
+        const specialTreeForms = {
+            easter: "tree-form-easter",
+            fourth: "tree-form-fourth",
+            scottish: "tree-form-scottish",
+            fall: "tree-form-deciduous",
+            spring: "tree-form-deciduous"
+        };
+
+        const specialToppers = {
+            classy: "topper-classy",
+            Judaism: "topper-Judaism",
+            Islam: "topper-Islam",
+            fall: "topper-fall",
+            spring: "topper-spring",
+            easter: "topper-easter",
+            scottish: "topper-scottish",
+            gothic: "topper-gothic",
+            bookish: "topper-bookish",
+            birthday: "topper-birthday",
+            teacher: "topper-teacher"
+        };
+
+        // Apply and remember the selected theme.
+        function applyTheme(themeName, savePreference = true) {
+            const theme = themes[themeName] ? themeName : "classic";
+
+            app.dataset.theme = theme;
+            document.body.dataset.theme = theme;
+
+            themeTitle.textContent = themes[theme].title;
+            themeDescription.textContent = themes[theme].description;
+
+            themeButtons.forEach((button) => {
+                const selected = button.dataset.themeButton === theme;
+
+                button.classList.toggle("active", selected);
+                button.setAttribute("aria-pressed", String(selected));
+            });
+
+            app.classList.remove("theme-changing");
+            void app.offsetWidth;
+            app.classList.add("theme-changing");
+
+            if (savePreference) {
+                try {
+                    localStorage.setItem("preferredTreeTheme", theme);
+                } catch (error) {
+                    console.warn("Theme preference could not be saved.", error);
+                }
+            }
+        }
+
+        // Change themes when a theme button is selected.
+        themeButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                applyTheme(button.dataset.themeButton);
+            });
+        });
+
+        // Classic is the default for new visitors.
+        // Returning visitors see their previously selected theme.
+        const defaultTheme = "classic";
+
+        try {
+            const savedTheme = localStorage.getItem("preferredTreeTheme");
+
+            const startingTheme =
+                savedTheme && themes[savedTheme]
+                    ? savedTheme
+                    : defaultTheme;
+
+            applyTheme(startingTheme, false);
+        } catch (error) {
+            console.warn("Saved theme could not be loaded.", error);
+            applyTheme(defaultTheme, false);
+        }
+
+        const copySvgButton = document.getElementById("copySvgButton");
+        const viewSvgButton = document.getElementById("viewSvgButton");
+        const copyStatus = document.getElementById("copyStatus");
+        const svgCodeDialog = document.getElementById("svgCodeDialog");
+        const svgCodeOutput = document.getElementById("svgCodeOutput");
+        const closeCodeDialog = document.getElementById("closeCodeDialog");
+        const closeDialogButton = document.getElementById("closeDialogButton");
+        const copyDialogCode = document.getElementById("copyDialogCode");
+
+        const portableProperties = [
+            "display",
+            "visibility",
+            "fill",
+            "fill-opacity",
+            "stroke",
+            "stroke-width",
+            "stroke-opacity",
+            "stroke-linecap",
+            "stroke-linejoin",
+            "stroke-dasharray",
+            "opacity",
+            "filter",
+            "stop-color",
+            "stop-opacity",
+            "font-family",
+            "font-size",
+            "font-weight",
+            "text-anchor",
+            "dominant-baseline"
+        ];
+
+        function readThemeVariable(name, fallback = "") {
+            const value = getComputedStyle(app).getPropertyValue(name).trim();
+            return value.replace(/^['"]|['"]$/g, "") || fallback;
+        }
+
+        function addPortableScene(clonedSvg) {
+            const svgNamespace = "http://www.w3.org/2000/svg";
+            const definitions = clonedSvg.querySelector("defs");
+            const accent = readThemeVariable("--accent", "#ffd66b");
+
+            const gradient = document.createElementNS(svgNamespace, "radialGradient");
+            gradient.id = "portableSpotlightGradient";
+            gradient.setAttribute("cx", "50%");
+            gradient.setAttribute("cy", "45%");
+            gradient.setAttribute("r", "55%");
+
+            const firstStop = document.createElementNS(svgNamespace, "stop");
+            firstStop.setAttribute("offset", "0%");
+            firstStop.setAttribute("stop-color", accent);
+            firstStop.setAttribute("stop-opacity", "0.32");
+
+            const secondStop = document.createElementNS(svgNamespace, "stop");
+            secondStop.setAttribute("offset", "58%");
+            secondStop.setAttribute("stop-color", accent);
+            secondStop.setAttribute("stop-opacity", "0.12");
+
+            const finalStop = document.createElementNS(svgNamespace, "stop");
+            finalStop.setAttribute("offset", "100%");
+            finalStop.setAttribute("stop-color", accent);
+            finalStop.setAttribute("stop-opacity", "0");
+
+            gradient.append(firstStop, secondStop, finalStop);
+
+            const blurFilter = document.createElementNS(svgNamespace, "filter");
+            blurFilter.id = "portableSpotlightBlur";
+            blurFilter.setAttribute("x", "-35%");
+            blurFilter.setAttribute("y", "-35%");
+            blurFilter.setAttribute("width", "170%");
+            blurFilter.setAttribute("height", "170%");
+
+            const blur = document.createElementNS(svgNamespace, "feGaussianBlur");
+            blur.setAttribute("stdDeviation", "14");
+            blurFilter.appendChild(blur);
+
+            definitions.append(gradient, blurFilter);
+
+            const sceneLayer = document.createElementNS(svgNamespace, "g");
+            sceneLayer.classList.add("portable-scene-layer");
+            sceneLayer.setAttribute("aria-hidden", "true");
+
+            const spotlight = document.createElementNS(svgNamespace, "ellipse");
+            spotlight.classList.add("portable-spotlight");
+            spotlight.setAttribute("cx", "160");
+            spotlight.setAttribute("cy", "190");
+            spotlight.setAttribute("rx", "122");
+            spotlight.setAttribute("ry", "151");
+            spotlight.setAttribute("fill", "url(#portableSpotlightGradient)");
+            spotlight.setAttribute("filter", "url(#portableSpotlightBlur)");
+            sceneLayer.appendChild(spotlight);
+
+            const symbolDetails = [
+                [readThemeVariable("--scene-symbol-2"), 282, 151, "portable-icon-two"],
+                [readThemeVariable("--scene-symbol-3"), 39, 286, "portable-icon-three"],
+                [readThemeVariable("--scene-symbol-4"), 281, 312, "portable-icon-four"],
+                [readThemeVariable("--scene-symbol-5"), 55, 92, "portable-icon-five"]
+            ].filter(([symbol]) => symbol);
+
+            symbolDetails.forEach(([symbol, x, y, className]) => {
+                const text = document.createElementNS(svgNamespace, "text");
+                text.classList.add("portable-floating-icon", className);
+                text.setAttribute("x", String(x));
+                text.setAttribute("y", String(y));
+                text.textContent = symbol;
+                sceneLayer.appendChild(text);
+            });
+
+            const artwork = clonedSvg.querySelector("#treeArtwork");
+            clonedSvg.insertBefore(sceneLayer, artwork);
+        }
+
+        function addPortableAnimations(clonedSvg, theme) {
+            const svgNamespace = "http://www.w3.org/2000/svg";
+            const definitions = clonedSvg.querySelector("defs");
+            const accent = readThemeVariable("--accent", "#ffd66b");
+            const danceRule = theme === "dance"
+                ? `
+                    #treeArtwork {
+                        transform-box: fill-box;
+                        transform-origin: 50% 100%;
+                        animation: portableTreeDance 1.1s ease-in-out infinite;
+                    }
+                `
+                : "";
+
+            const style = document.createElementNS(svgNamespace, "style");
+            style.textContent = `
+                .portable-spotlight {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSpotlightPulse 4.8s ease-in-out infinite;
+                }
+
+                .portable-floating-icon {
+                    fill: ${accent};
+                    font-family: "Segoe UI Symbol", "Segoe UI Emoji", sans-serif;
+                    font-size: 19px;
+                    font-weight: 700;
+                    text-anchor: middle;
+                    dominant-baseline: middle;
+                    opacity: 0.5;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFloat 5s ease-in-out infinite;
+                }
+
+                .portable-icon-two { animation-delay: -1.5s; }
+                .portable-icon-three { animation-delay: -3s; }
+                .portable-icon-four { animation-delay: -4s; }
+                .portable-icon-five { animation-delay: -2.2s; }
+
+                .bulb,
+                .eid-light,
+                .eid-mark-spark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTwinkle 1.6s ease-in-out infinite;
+                }
+
+                .eid-sparkle {
+                    animation: portableEidSparkle 1.6s ease-in-out infinite;
+                }
+
+                .delay-2,
+                .eid-delay-two { animation-delay: 0.45s; }
+
+                .delay-3,
+                .eid-delay-three { animation-delay: 0.9s; }
+
+                .star {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTopperPulse 2.5s ease-in-out infinite;
+                }
+
+                .classy-bauble {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableShimmer 2.8s ease-in-out infinite;
+                }
+
+                .shimmer-two { animation-delay: -0.9s; }
+                .shimmer-three { animation-delay: -1.8s; }
+
+                .Judaism-symbol,
+                .Islam-crescent,
+                .Islam-star,
+                .eid-moon-star-mark {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableSymbolPulse 2.8s ease-in-out infinite;
+                }
+
+                .symbol-delay-two { animation-delay: -0.9s; }
+                .symbol-delay-three { animation-delay: -1.8s; }
+
+                .Islam-lantern {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableLanternSway 3.2s ease-in-out infinite;
+                }
+
+                .lantern-delay-two { animation-delay: -1.6s; }
+                .lantern-delay-three { animation-delay: -0.7s; }
+                .pearl-two { animation-delay: -1.4s; }
+
+                .fall-leaf {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableLeafGlow 3.2s ease-in-out infinite;
+                }
+
+                .leaf-delay-two { animation-delay: -1s; }
+                .leaf-delay-three { animation-delay: -2s; }
+
+                .falling-leaf {
+                    animation: portableLeafFall 4.6s ease-in-out infinite;
+                }
+
+                .falling-two { animation-delay: -2.3s; }
+                .falling-three { animation-delay: -1.15s; }
+
+                .spring-blossom,
+                .spring-topper-blossom {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableBloom 2.8s ease-in-out infinite;
+                }
+
+                .bloom-two { animation-delay: -0.9s; }
+                .bloom-three { animation-delay: -1.8s; }
+
+                .gothic-bat {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableGothicFlutter 2.4s ease-in-out infinite;
+                }
+
+                .gothic-mist-line {
+                    animation: portableGothicMist 4.8s ease-in-out infinite;
+                }
+
+                .gothic-mist-two { animation-delay: -2.4s; }
+
+                .bookish-page {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portablePageFlutter 3.1s ease-in-out infinite;
+                }
+
+                .bookish-page-two { animation-delay: -1s; }
+                .bookish-page-three { animation-delay: -2s; }
+
+                .book-stack-bookmark {
+                    transform-box: fill-box;
+                    transform-origin: 50% 0%;
+                    animation: portableBookBookmarkSway 2.8s ease-in-out infinite;
+                }
+
+                .book-stack-glint {
+                    animation: portableBookGlint 2.4s ease-in-out infinite;
+                }
+
+                .glint-two { animation-delay: -1.2s; }
+
+                .birthday-balloon {
+                    transform-box: fill-box;
+                    transform-origin: center bottom;
+                    animation: portableBalloonBob 3s ease-in-out infinite;
+                }
+
+                .birthday-balloon-two { animation-delay: -1.5s; }
+
+                .birthday-confetti {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableConfettiFall 3.3s linear infinite;
+                }
+
+                .confetti-two { animation-delay: -0.8s; }
+                .confetti-three { animation-delay: -1.6s; }
+                .confetti-four { animation-delay: -2.4s; }
+
+                .teacher-chalk-line {
+                    animation: portableChalkDraw 3.4s ease-in-out infinite;
+                }
+
+                .teacher-chalk-two { animation-delay: -1.7s; }
+
+                .teacher-item {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableTeacherBounce 3s ease-in-out infinite;
+                }
+
+                .teacher-item-two { animation-delay: -0.7s; }
+                .teacher-item-three { animation-delay: -1.4s; }
+                .teacher-item-four { animation-delay: -2.1s; }
+
+                .firework {
+                    opacity: 0;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: portableFireworkBurst 3.2s ease-out infinite;
+                }
+
+                .firework path {
+                    stroke-dasharray: 30;
+                    stroke-dashoffset: 30;
+                    animation: portableFireworkDraw 3.2s ease-out infinite;
+                }
+
+                .firework-one,
+                .firework-one path { animation-delay: -0.4s; }
+                .firework-two,
+                .firework-two path { animation-delay: -1.5s; }
+                .firework-three,
+                .firework-three path { animation-delay: -2.5s; }
+
+                ${danceRule}
+
+                @keyframes portableTwinkle {
+                    0%, 100% { opacity: 0.72; transform: scale(0.9); }
+                    50% { opacity: 1; transform: scale(1.16); }
+                }
+
+                @keyframes portableEidSparkle {
+                    0%, 100% { opacity: 0.42; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableTopperPulse {
+                    0%, 100% { transform: scale(0.96) rotate(-2deg); }
+                    50% { transform: scale(1.05) rotate(2deg); }
+                }
+
+                @keyframes portableFloat {
+                    0%, 100% { opacity: 0.32; transform: translateY(0) rotate(-5deg); }
+                    50% { opacity: 0.72; transform: translateY(-11px) rotate(7deg); }
+                }
+
+                @keyframes portableSpotlightPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.96); }
+                    50% { opacity: 1; transform: scale(1.04); }
+                }
+
+                @keyframes portableShimmer {
+                    0%, 100% { opacity: 0.78; transform: scale(0.94); }
+                    50% { opacity: 1; transform: scale(1.1); }
+                }
+
+                @keyframes portableSymbolPulse {
+                    0%, 100% { opacity: 0.72; transform: scale(0.92); }
+                    50% { opacity: 1; transform: scale(1.12); }
+                }
+
+                @keyframes portableLanternSway {
+                    0%, 100% { transform: rotate(-4deg); }
+                    50% { transform: rotate(4deg); }
+                }
+
+                @keyframes portableLeafGlow {
+                    0%, 100% { opacity: 0.76; transform: scale(0.94) rotate(-3deg); }
+                    50% { opacity: 1; transform: scale(1.1) rotate(4deg); }
+                }
+
+                @keyframes portableLeafFall {
+                    0% { opacity: 0; transform: translate(0, -18px) rotate(0deg); }
+                    20% { opacity: 1; }
+                    100% { opacity: 0; transform: translate(18px, 55px) rotate(150deg); }
+                }
+
+                @keyframes portableBloom {
+                    0%, 100% { opacity: 0.72; transform: scale(0.68); }
+                    50% { opacity: 1; transform: scale(1.08); }
+                }
+
+                @keyframes portableGothicFlutter {
+                    0%, 100% { transform: translateY(0) rotate(-7deg) scale(0.94); }
+                    50% { transform: translateY(-8px) rotate(8deg) scale(1.08); }
+                }
+
+                @keyframes portableGothicMist {
+                    0%, 100% { opacity: 0.18; transform: translateX(-7px); }
+                    50% { opacity: 0.58; transform: translateX(9px); }
+                }
+
+                @keyframes portablePageFlutter {
+                    0%, 100% { opacity: 0.48; transform: translate(0, 0) rotate(-8deg); }
+                    50% { opacity: 1; transform: translate(7px, -10px) rotate(12deg); }
+                }
+
+                @keyframes portableBookBookmarkSway {
+                    0%, 100% { transform: rotate(-3deg); }
+                    50% { transform: rotate(3deg); }
+                }
+
+                @keyframes portableBookGlint {
+                    0%, 100% { opacity: 0.25; }
+                    50% { opacity: 1; }
+                }
+
+                @keyframes portableBalloonBob {
+                    0%, 100% { transform: translateY(0) rotate(-3deg); }
+                    50% { transform: translateY(-10px) rotate(4deg); }
+                }
+
+                @keyframes portableConfettiFall {
+                    0% { opacity: 0; transform: translateY(-14px) rotate(0deg); }
+                    18% { opacity: 1; }
+                    100% { opacity: 0; transform: translateY(38px) rotate(220deg); }
+                }
+
+                @keyframes portableChalkDraw {
+                    0%, 100% { stroke-dashoffset: 80; opacity: 0.3; }
+                    45%, 70% { stroke-dashoffset: 0; opacity: 1; }
+                }
+
+                @keyframes portableTeacherBounce {
+                    0%, 100% { transform: translateY(0) rotate(-2deg); }
+                    50% { transform: translateY(-5px) rotate(3deg); }
+                }
+
+                @keyframes portableTreeDance {
+                    0%, 100% { transform: rotate(-2deg) translateY(0); }
+                    25% { transform: rotate(2deg) translateY(-3px); }
+                    50% { transform: rotate(-1deg) translateY(0); }
+                    75% { transform: rotate(2.5deg) translateY(-4px); }
+                }
+
+                @keyframes portableFireworkBurst {
+                    0% { opacity: 0; transform: scale(0.2); }
+                    12% { opacity: 1; }
+                    42% { opacity: 0.95; transform: scale(1); }
+                    70%, 100% { opacity: 0; transform: scale(1.18); }
+                }
+
+                @keyframes portableFireworkDraw {
+                    0% { stroke-dashoffset: 30; }
+                    18%, 45% { stroke-dashoffset: 0; }
+                    70%, 100% { stroke-dashoffset: -30; }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    * { animation: none !important; }
+                }
+            `;
+
+            definitions.appendChild(style);
+        }
+
+        // Build a standalone SVG using only the selected tree.
+        function createPortableSvg() {
+            const sourceSvg = document.getElementById("tree");
+            const clonedSvg = sourceSvg.cloneNode(true);
+
+            const sourceElements = [sourceSvg, ...sourceSvg.querySelectorAll("*")];
+            const clonedElements = [clonedSvg, ...clonedSvg.querySelectorAll("*")];
+
+            sourceElements.forEach((sourceElement, index) => {
+                const clonedElement = clonedElements[index];
+
+                if (!clonedElement) {
+                    return;
+                }
+
+                const computedStyles = getComputedStyle(sourceElement);
+
+                portableProperties.forEach((property) => {
+                    let value = computedStyles.getPropertyValue(property).trim();
+
+                    if (!value) {
+                        return;
+                    }
+
+                    value = value.replace(/url\((["']?)[^)]*?#/g, "url($1#");
+                    clonedElement.style.setProperty(property, value);
+                });
+            });
+
+            const reusableDefinitions = [
+                clonedSvg.querySelector("#seasonLeaf"),
+                clonedSvg.querySelector("#springBlossom")
+            ];
+
+            reusableDefinitions.forEach((definition) => {
+                if (!definition) {
+                    return;
+                }
+
+                definition.style.removeProperty("fill");
+                definition.style.removeProperty("fill-opacity");
+                definition.style.removeProperty("stroke");
+                definition.style.removeProperty("stroke-width");
+                definition.style.removeProperty("stroke-opacity");
+            });
+
+            const portableLeafShape = clonedSvg.querySelector(
+                "#seasonLeaf .leaf-shape"
+            );
+
+            if (portableLeafShape) {
+                portableLeafShape.style.removeProperty("fill");
+                portableLeafShape.style.removeProperty("fill-opacity");
+                portableLeafShape.style.removeProperty("stroke");
+                portableLeafShape.style.removeProperty("stroke-width");
+                portableLeafShape.style.removeProperty("stroke-opacity");
+            }
+
+            clonedSvg
+                .querySelectorAll(
+                    "#springBlossom circle:not(.blossom-center)"
+                )
+                .forEach((petal) => {
+                    petal.style.removeProperty("fill");
+                    petal.style.removeProperty("fill-opacity");
+                    petal.style.removeProperty("stroke");
+                    petal.style.removeProperty("stroke-width");
+                    petal.style.removeProperty("stroke-opacity");
+                });
+
+            const theme = app.dataset.theme;
+            const selectedDecor = `decor-${theme}`;
+            const selectedForm = specialTreeForms[theme] || "tree-form-default";
+            const selectedTopper = specialToppers[theme] || "topper-default";
+
+            clonedSvg.querySelectorAll(".theme-decor").forEach((group) => {
+                if (!group.classList.contains(selectedDecor)) {
+                    group.remove();
+                }
+            });
+
+            clonedSvg.querySelectorAll(".tree-form").forEach((group) => {
+                if (!group.classList.contains(selectedForm)) {
+                    group.remove();
+                }
+            });
+
+            clonedSvg.querySelectorAll(".topper-variant").forEach((group) => {
+                if (!group.classList.contains(selectedTopper)) {
+                    group.remove();
+                }
+            });
+
+            addPortableScene(clonedSvg);
+            addPortableAnimations(clonedSvg, theme);
+
+            const title = themes[theme]?.title || "Themed Tree";
+            const description =
+                themes[theme]?.description ||
+                "A decorative animated tree.";
+
+            const titleElement = clonedSvg.querySelector("title");
+            const descriptionElement = clonedSvg.querySelector("desc");
+
+            if (titleElement) {
+                titleElement.textContent = title;
+            }
+
+            if (descriptionElement) {
+                descriptionElement.textContent = description;
+            }
+
+            clonedSvg.removeAttribute("aria-labelledby");
+            clonedSvg.setAttribute("aria-label", title);
+            clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            clonedSvg.setAttribute("width", "320");
+            clonedSvg.setAttribute("height", "420");
+
+            const markup = new XMLSerializer().serializeToString(clonedSvg);
+
+            return `<!-- ${title} -->\n${markup.replace(/></g, ">\n<")}`;
+        }
+
+        async function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+
+            const temporaryTextarea = document.createElement("textarea");
+            temporaryTextarea.value = text;
+            temporaryTextarea.setAttribute("readonly", "");
+            temporaryTextarea.style.position = "fixed";
+            temporaryTextarea.style.opacity = "0";
+
+            document.body.appendChild(temporaryTextarea);
+            temporaryTextarea.select();
+
+            const copied = document.execCommand("copy");
+            temporaryTextarea.remove();
+
+            if (!copied) {
+                throw new Error("Copy failed.");
+            }
+        }
+
+        async function copyCurrentSvg() {
+            try {
+                await copyText(createPortableSvg());
+
+                copyStatus.textContent = "Copied to your clipboard.";
+                copySvgButton.classList.add("copied");
+
+                window.setTimeout(() => {
+                    copyStatus.textContent = "";
+                    copySvgButton.classList.remove("copied");
+                }, 2200);
+            } catch (error) {
+                console.error(error);
+                copyStatus.textContent = "Copying was blocked. Open the code instead.";
+            }
+        }
+
+        function openCodeDialog() {
+            svgCodeOutput.value = createPortableSvg();
+
+            if (typeof svgCodeDialog.showModal === "function") {
+                svgCodeDialog.showModal();
+            } else {
+                svgCodeDialog.setAttribute("open", "");
+            }
+
+            window.setTimeout(() => {
+                svgCodeOutput.focus();
+                svgCodeOutput.select();
+            }, 50);
+        }
+
+        function closeDialog() {
+            if (typeof svgCodeDialog.close === "function") {
+                svgCodeDialog.close();
+            } else {
+                svgCodeDialog.removeAttribute("open");
+            }
+        }
+
+        copySvgButton.addEventListener("click", copyCurrentSvg);
+        viewSvgButton.addEventListener("click", openCodeDialog);
+        closeCodeDialog.addEventListener("click", closeDialog);
+        closeDialogButton.addEventListener("click", closeDialog);
+
+        copyDialogCode.addEventListener("click", async () => {
+            try {
+                await copyText(svgCodeOutput.value);
+                copyDialogCode.textContent = "Copied";
+
+                window.setTimeout(() => {
+                    copyDialogCode.textContent = "Copy code";
+                }, 1800);
+            } catch (error) {
+                console.error(error);
+                svgCodeOutput.focus();
+                svgCodeOutput.select();
+            }
+        });
+
+        svgCodeDialog.addEventListener("click", (event) => {
+            if (event.target === svgCodeDialog) {
+                closeDialog();
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <div id="footerMount"></div>
+
+    <script>
+        async function loadFooter() {
+            const footerMount = document.getElementById("footerMount");
+
+            try {
+                const response = await fetch("footer.html");
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Footer could not be loaded: ${response.status}`
+                    );
+                }
+
+                footerMount.innerHTML = await response.text();
+
+                footerMount
+                    .querySelectorAll("script")
+                    .forEach((oldScript) => {
+                        const newScript =
+                            document.createElement("script");
+
+                        Array.from(oldScript.attributes).forEach(
+                            (attribute) => {
+                                newScript.setAttribute(
+                                    attribute.name,
+                                    attribute.value
+                                );
+                            }
+                        );
+
+                        newScript.textContent = oldScript.textContent;
+                        oldScript.replaceWith(newScript);
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadFooter();
+    </script>
+
+</body>
+</html>
