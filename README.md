@@ -35,7 +35,7 @@ Choose a theme, preview the animation, view the generated code, and copy a porta
 | **Girly** | A pink whimsical tree with bows, makeup, handbags, and playful accessories |
 | **Gothic** | A dark romantic tree with bats, candles, roses, mist, and a moon topper |
 | **Halloween** | A haunted tree decorated with pumpkins, bats, ghosts, and spiderwebs |
-| **Islam** | An emerald and gold Eid tree with glowing lanterns, warm lights, and a crescent + star topper |
+| **Islam** | An emerald and gold Eid tree with lanterns, lights, and a crescent and star topper |
 | **Judaism** | A blue-and-silver Festival of Lights tree with Stars of David and glowing ornaments |
 | **Scottish** | A windswept Highland pine with tartan details and a thistle topper |
 | **Space** | A deep-space tree with planets, rockets, aliens, stars, and a moon |
