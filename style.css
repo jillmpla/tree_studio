@@ -2192,11 +2192,11 @@ button {
     --light-2: #8ab7ff;
     --light-3: #dceaff;
     --light-4: #4f83d6;
-    --scene-symbol-1: "\2721\FE0E";
+    --scene-symbol-1: "✧";
     --scene-symbol-2: "✦";
-    --scene-symbol-3: "\2721\FE0E";
+    --scene-symbol-3: "●";
     --scene-symbol-4: "•";
-    --scene-symbol-5: "\2721\FE0E";
+    --scene-symbol-5: "✧";
 }
 
 [data-theme="Islam"] {
@@ -2216,11 +2216,11 @@ button {
     --light-2: #f1ca67;
     --light-3: #d9fff0;
     --light-4: #ffffff;
-    --scene-symbol-1: "☾";
-    --scene-symbol-2: "☾";
-    --scene-symbol-3: "☾";
-    --scene-symbol-4: "☾";
-    --scene-symbol-5: "☾";
+    --scene-symbol-1: "✧";
+    --scene-symbol-2: "✧";
+    --scene-symbol-3: "✦";
+    --scene-symbol-4: "•";
+    --scene-symbol-5: "●";
 }
 
 [data-theme="fall"] {
